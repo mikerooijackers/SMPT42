@@ -1,0 +1,373 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="HomePlanModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Plan">
+          <Key>
+            <PropertyRef Name="PlanID" />
+          </Key>
+          <Property Name="PlanID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="StartDateTime" Type="datetime" Nullable="false" />
+          <Property Name="EndDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PlanActivity">
+          <Key>
+            <PropertyRef Name="PlanActivityID" />
+          </Key>
+          <Property Name="PlanActivityID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PlanID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="StartTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="EndTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="Order" Type="int" Nullable="false" />
+          <Property Name="Type" Type="tinyint" Nullable="false" />
+          <Property Name="UserActivityID" Type="uniqueidentifier" />
+          <Property Name="PlannedActivityID" Type="uniqueidentifier" />
+          <Property Name="IsActual" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="AvatarImage" Type="varchar" MaxLength="255" />
+          <Property Name="Password" Type="varchar(max)" Nullable="false" />
+          <Property Name="ActiviationString" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="UserActivity">
+          <Key>
+            <PropertyRef Name="UserActivityID" />
+          </Key>
+          <Property Name="UserActivityID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Type" Type="tinyint" Nullable="false" />
+          <Property Name="Icon" Type="varchar" MaxLength="255" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="PlannedDuration" Type="time" Precision="7" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Plan_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Plan" Type="Self.Plan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Plan">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlanActivity_Plan">
+          <End Role="Plan" Type="Self.Plan" Multiplicity="1" />
+          <End Role="PlanActivity" Type="Self.PlanActivity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plan">
+              <PropertyRef Name="PlanID" />
+            </Principal>
+            <Dependent Role="PlanActivity">
+              <PropertyRef Name="PlanID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlanActivity_UserActivity">
+          <End Role="UserActivity" Type="Self.UserActivity" Multiplicity="0..1" />
+          <End Role="PlanActivity" Type="Self.PlanActivity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserActivity">
+              <PropertyRef Name="UserActivityID" />
+            </Principal>
+            <Dependent Role="PlanActivity">
+              <PropertyRef Name="UserActivityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlannedActivity_PlanActivity">
+          <End Role="PlanActivity" Type="Self.PlanActivity" Multiplicity="0..1" />
+          <End Role="PlanActivity1" Type="Self.PlanActivity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlanActivity">
+              <PropertyRef Name="PlanActivityID" />
+            </Principal>
+            <Dependent Role="PlanActivity1">
+              <PropertyRef Name="PlannedActivityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserActivity_Person">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UserActivity" Type="Self.UserActivity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserActivity">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HomePlanModelStoreContainer">
+          <EntitySet Name="Plan" EntityType="Self.Plan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PlanActivity" EntityType="Self.PlanActivity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserActivity" EntityType="Self.UserActivity" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Plan_User" Association="Self.FK_Plan_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Plan" EntitySet="Plan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlanActivity_Plan" Association="Self.FK_PlanActivity_Plan">
+            <End Role="Plan" EntitySet="Plan" />
+            <End Role="PlanActivity" EntitySet="PlanActivity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlanActivity_UserActivity" Association="Self.FK_PlanActivity_UserActivity">
+            <End Role="UserActivity" EntitySet="UserActivity" />
+            <End Role="PlanActivity" EntitySet="PlanActivity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlannedActivity_PlanActivity" Association="Self.FK_PlannedActivity_PlanActivity">
+            <End Role="PlanActivity" EntitySet="PlanActivity" />
+            <End Role="PlanActivity1" EntitySet="PlanActivity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserActivity_Person" Association="Self.FK_UserActivity_Person">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserActivity" EntitySet="UserActivity" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HomePlanModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Plan">
+          <Key>
+            <PropertyRef Name="PlanID" />
+          </Key>
+          <Property Name="PlanID" Type="Guid" Nullable="false" />
+          <Property Name="UserID" Type="Guid" Nullable="false" />
+          <Property Name="StartDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Plan_User" FromRole="Plan" ToRole="User" />
+          <NavigationProperty Name="PlanActivities" Relationship="Self.FK_PlanActivity_Plan" FromRole="Plan" ToRole="PlanActivity" />
+        </EntityType>
+        <EntityType Name="PlanActivity">
+          <Key>
+            <PropertyRef Name="PlanActivityID" />
+          </Key>
+          <Property Name="PlanActivityID" Type="Guid" Nullable="false" />
+          <Property Name="PlanID" Type="Guid" Nullable="false" />
+          <Property Name="StartTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="EndTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="Order" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="HomePlanModel.PlanActivityType" Nullable="false" />
+          <Property Name="UserActivityID" Type="Guid" />
+          <Property Name="PlannedActivityID" Type="Guid" />
+          <Property Name="IsActual" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Plan" Relationship="Self.FK_PlanActivity_Plan" FromRole="PlanActivity" ToRole="Plan" />
+          <NavigationProperty Name="UserActivity" Relationship="Self.FK_PlanActivity_UserActivity" FromRole="PlanActivity" ToRole="UserActivity" />
+          <NavigationProperty Name="ActualActivities" Relationship="Self.FK_PlannedActivity_PlanActivity" FromRole="PlanActivity" ToRole="PlanActivity1" />
+          <NavigationProperty Name="PlannedActivity" Relationship="Self.FK_PlannedActivity_PlanActivity" FromRole="PlanActivity1" ToRole="PlanActivity" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Guid" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AvatarImage" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ActiviationString" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Plans" Relationship="Self.FK_Plan_User" FromRole="User" ToRole="Plan" />
+          <NavigationProperty Name="UserActivities" Relationship="Self.FK_UserActivity_Person" FromRole="User" ToRole="UserActivity" />
+        </EntityType>
+        <EntityType Name="UserActivity">
+          <Key>
+            <PropertyRef Name="UserActivityID" />
+          </Key>
+          <Property Name="UserActivityID" Type="Guid" Nullable="false" />
+          <Property Name="UserID" Type="Guid" Nullable="false" />
+          <Property Name="Type" Type="HomePlanModel.UserActivityType" Nullable="false" />
+          <Property Name="Icon" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PlannedDuration" Type="Time" Nullable="false" Precision="7" />
+          <NavigationProperty Name="PlanActivities" Relationship="Self.FK_PlanActivity_UserActivity" FromRole="UserActivity" ToRole="PlanActivity" />
+          <NavigationProperty Name="User" Relationship="Self.FK_UserActivity_Person" FromRole="UserActivity" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Plan_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Plan" Type="Self.Plan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Plan">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlanActivity_Plan">
+          <End Role="Plan" Type="Self.Plan" Multiplicity="1" />
+          <End Role="PlanActivity" Type="Self.PlanActivity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plan">
+              <PropertyRef Name="PlanID" />
+            </Principal>
+            <Dependent Role="PlanActivity">
+              <PropertyRef Name="PlanID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlanActivity_UserActivity">
+          <End Role="UserActivity" Type="Self.UserActivity" Multiplicity="0..1" />
+          <End Role="PlanActivity" Type="Self.PlanActivity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserActivity">
+              <PropertyRef Name="UserActivityID" />
+            </Principal>
+            <Dependent Role="PlanActivity">
+              <PropertyRef Name="UserActivityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlannedActivity_PlanActivity">
+          <End Role="PlanActivity" Type="Self.PlanActivity" Multiplicity="0..1" />
+          <End Role="PlanActivity1" Type="Self.PlanActivity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlanActivity">
+              <PropertyRef Name="PlanActivityID" />
+            </Principal>
+            <Dependent Role="PlanActivity1">
+              <PropertyRef Name="PlannedActivityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserActivity_Person">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UserActivity" Type="Self.UserActivity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserActivity">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HomePlanEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Plans" EntityType="Self.Plan" />
+          <EntitySet Name="PlanActivities" EntityType="Self.PlanActivity" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="UserActivities" EntityType="Self.UserActivity" />
+          <AssociationSet Name="FK_Plan_User" Association="Self.FK_Plan_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Plan" EntitySet="Plans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlanActivity_Plan" Association="Self.FK_PlanActivity_Plan">
+            <End Role="Plan" EntitySet="Plans" />
+            <End Role="PlanActivity" EntitySet="PlanActivities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlanActivity_UserActivity" Association="Self.FK_PlanActivity_UserActivity">
+            <End Role="UserActivity" EntitySet="UserActivities" />
+            <End Role="PlanActivity" EntitySet="PlanActivities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlannedActivity_PlanActivity" Association="Self.FK_PlannedActivity_PlanActivity">
+            <End Role="PlanActivity" EntitySet="PlanActivities" />
+            <End Role="PlanActivity1" EntitySet="PlanActivities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserActivity_Person" Association="Self.FK_UserActivity_Person">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserActivity" EntitySet="UserActivities" />
+          </AssociationSet>
+        </EntityContainer>
+        <EnumType Name="UserActivityType" UnderlyingType="Byte">
+          <Member Name="Personal" Value="1" />
+          <Member Name="Incidental" Value="2" />
+          <Member Name="WorkRelated" Value="3" />
+        </EnumType>
+        <EnumType Name="PlanActivityType" UnderlyingType="Byte">
+          <Member Name="WorkRelated" Value="1" />
+          <Member Name="Personal" Value="2" />
+          <Member Name="Incidental" Value="3" />
+        </EnumType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HomePlanModelStoreContainer" CdmEntityContainer="HomePlanEntities">
+          <EntitySetMapping Name="Plans">
+            <EntityTypeMapping TypeName="HomePlanModel.Plan">
+              <MappingFragment StoreEntitySet="Plan">
+                <ScalarProperty Name="PlanID" ColumnName="PlanID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="StartDateTime" ColumnName="StartDateTime" />
+                <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlanActivities">
+            <EntityTypeMapping TypeName="HomePlanModel.PlanActivity">
+              <MappingFragment StoreEntitySet="PlanActivity">
+                <ScalarProperty Name="PlanActivityID" ColumnName="PlanActivityID" />
+                <ScalarProperty Name="PlanID" ColumnName="PlanID" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="UserActivityID" ColumnName="UserActivityID" />
+                <ScalarProperty Name="PlannedActivityID" ColumnName="PlannedActivityID" />
+                <ScalarProperty Name="IsActual" ColumnName="IsActual" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="HomePlanModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AvatarImage" ColumnName="AvatarImage" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="ActiviationString" ColumnName="ActiviationString" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserActivities">
+            <EntityTypeMapping TypeName="HomePlanModel.UserActivity">
+              <MappingFragment StoreEntitySet="UserActivity">
+                <ScalarProperty Name="UserActivityID" ColumnName="UserActivityID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PlannedDuration" ColumnName="PlannedDuration" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
