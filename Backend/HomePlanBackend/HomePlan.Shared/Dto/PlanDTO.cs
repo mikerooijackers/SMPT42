@@ -10,5 +10,10 @@ namespace HomePlan.Shared.DTO
     /// </summary>
     public class PlanDto
     {
+        public Guid PlanId { get; set; }
+        public DateTime StartDateTime { get; set; }
+        public DateTime EndDateTime { get; set; }
+        public List<PlanActivityDto> PlannedActivities { get; set; }
+        public List<PlanActivityDto> ActualActitivies { get; set; }
     }
 }
