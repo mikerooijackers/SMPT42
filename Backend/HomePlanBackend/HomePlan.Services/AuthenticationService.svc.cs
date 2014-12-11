@@ -13,21 +13,32 @@ namespace HomePlan.Services
 {
     public class AuthenticationService : IAuthenticationService
     {
-        public UserDto Authenticate(string username, string password)
+        public UserDto Authenticate(UserDto user)
         {
-            return new UserDto()
-            {
-                UserId = Guid.NewGuid(),
-                Name = username,
-                AvatarUrl = password
-            };
+            var authenticatedUser = Helpers.AuthenticationHelper.Authenticate(user);
+            return authenticatedUser != null ? authenticatedUser.ToUserDto() : null;
         }
-        public UserDto Test()
+
+        public UserDto Register(UserDto userToRegister)
         {
-            return new UserDto()
+            using (HomePlanEntities entities = new HomePlanEntities())
             {
-                UserId = Guid.NewGuid()
-            };
+                //TODO: Encrypt / hash password.
+
+                Entities.User newUser = new Entities.User()
+                {
+                    Email = userToRegister.Email,
+                    UserName = userToRegister.Name,
+                    Password = userToRegister.Password,
+                    UserID = Guid.NewGuid()
+                };
+
+                entities.Users.Add(newUser);
+
+                entities.SaveChanges();
+
+                return newUser.ToUserDto();
+            }
         }
     }
 }

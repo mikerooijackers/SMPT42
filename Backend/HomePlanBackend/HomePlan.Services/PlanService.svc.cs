@@ -5,25 +5,29 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using HomePlan.Entities;
+using HomePlan.Services.Helpers;
 using HomePlan.Shared.DTO;
 using HomePlan.Shared.Enumerations;
 
 namespace HomePlan.Services
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "PlanService" in code, svc and config file together.
-    // NOTE: In order to launch WCF Test Client for testing this service, please select PlanService.svc or PlanService.svc.cs at the Solution Explorer and start debugging.
     public class PlanService : IPlanService
     {
-        public PlanDto GeneratePlan(long startAtTicks, long endAtTicks, List<Guid> activities)
+        public PlanDto GeneratePlan(UserDto loggedInUser,
+            long startAtTicks,
+            long endAtTicks,
+            List<Guid> activities)
         {
             DateTime startedDateTime = new DateTime(startAtTicks);
             DateTime endDateTime = new DateTime(endAtTicks);
 
             using (HomePlanEntities entities = new HomePlanEntities())
             {
+                User authenticatedUser = AuthenticationHelper.Authenticate(loggedInUser, entities);
+
                 IEnumerable<Entities.UserActivity> userActivities =
                     (from ua in entities.UserActivities
-                        where activities.Contains(ua.UserActivityID)
+                        where activities.Contains(ua.UserActivityID) && ua.UserID == authenticatedUser.UserID
                         select ua).ToArray();
 
                 TimeSpan totalBreakTime = new TimeSpan();
@@ -41,6 +45,7 @@ namespace HomePlan.Services
                 Plan plan = new Plan()
                 {
                     PlanID = Guid.NewGuid(),
+                    UserID =  authenticatedUser.UserID,
                     EndDateTime = endDateTime,
                     StartDateTime = startedDateTime
                 };

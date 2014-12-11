@@ -7,7 +7,6 @@
 	[UserName] VARCHAR(255) NOT NULL,
 	[AvatarImage] VARCHAR(255) NULL,
 	[Password] VARCHAR(MAX) NOT NULL,
-	[ActiviationString] VARCHAR(MAX) NULL,
 
 	CONSTRAINT [UN_User_Email] UNIQUE(Email)
 )

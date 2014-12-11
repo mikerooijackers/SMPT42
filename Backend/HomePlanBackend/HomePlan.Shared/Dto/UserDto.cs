@@ -15,10 +15,12 @@ namespace HomePlan.Shared.DTO
         [DataMember]
         public Guid UserId { get; set; }
         [DataMember]
-        public String Name { get; set; }
+        public string Name { get; set; }
         [DataMember]
-        public String Email { get; set; }
+        public string Email { get; set; }
         [DataMember]
-        public String AvatarUrl { get; set; }
+        public string Password { get; set; }
+        [DataMember]
+        public string AvatarUrl { get; set; }
     }
 }

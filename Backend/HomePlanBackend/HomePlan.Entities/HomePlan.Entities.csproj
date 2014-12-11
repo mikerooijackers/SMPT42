@@ -51,6 +51,7 @@
     <Compile Include="Extended\Plan.cs" />
     <Compile Include="Extended\PlanActivity.cs" />
     <Compile Include="Extended\User.cs" />
+    <Compile Include="Extended\UserActivity.cs" />
     <Compile Include="HomePlanModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

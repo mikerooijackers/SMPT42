@@ -65,4 +65,7 @@
     <Build Include="Tables\UserActivity.sql" />
     <Build Include="Tables\PlanActivity.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="HomePlan.Database.publish.xml" />
+  </ItemGroup>
 </Project>

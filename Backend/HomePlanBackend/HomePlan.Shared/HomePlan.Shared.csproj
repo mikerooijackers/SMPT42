@@ -45,6 +45,7 @@
     <Compile Include="Dto\UserActivityDTO.cs" />
     <Compile Include="Dto\UserDto.cs" />
     <Compile Include="Enumerations\PlanActivityType.cs" />
+    <Compile Include="Enumerations\UserActivityIconType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

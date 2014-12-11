@@ -11,10 +11,10 @@ namespace HomePlan.Services
     {
 
         [OperationContract]
-        UserDto Authenticate(string username, string password);
+        UserDto Authenticate(UserDto user);
 
         [OperationContract]
-        UserDto Test();
+        UserDto Register(UserDto userToRegister);
 
     }
 

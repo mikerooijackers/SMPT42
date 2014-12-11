@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="HomePlanModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="HomePlanModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Plan">
           <Key>
             <PropertyRef Name="PlanID" />
@@ -37,7 +37,6 @@
           <Property Name="UserName" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="AvatarImage" Type="varchar" MaxLength="255" />
           <Property Name="Password" Type="varchar(max)" Nullable="false" />
-          <Property Name="ActiviationString" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="UserActivity">
           <Key>
@@ -45,9 +44,9 @@
           </Key>
           <Property Name="UserActivityID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="UserID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Type" Type="tinyint" Nullable="false" />
-          <Property Name="Icon" Type="varchar" MaxLength="255" />
+          <Property Name="Icon" Type="int" />
           <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="DeletedValue" Type="uniqueidentifier" />
           <Property Name="PlannedDuration" Type="time" Precision="7" Nullable="false" />
         </EntityType>
         <Association Name="FK_Plan_User">
@@ -136,8 +135,7 @@
             <End Role="UserActivity" EntitySet="UserActivity" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="HomePlanModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -179,7 +177,6 @@
           <Property Name="UserName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="AvatarImage" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ActiviationString" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Plans" Relationship="Self.FK_Plan_User" FromRole="User" ToRole="Plan" />
           <NavigationProperty Name="UserActivities" Relationship="Self.FK_UserActivity_Person" FromRole="User" ToRole="UserActivity" />
         </EntityType>
@@ -189,12 +186,12 @@
           </Key>
           <Property Name="UserActivityID" Type="Guid" Nullable="false" />
           <Property Name="UserID" Type="Guid" Nullable="false" />
-          <Property Name="Type" Type="Byte" Nullable="false" />
-          <Property Name="Icon" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="IconType" Type="HomePlanModel.UserActivityIconType" />
           <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PlannedDuration" Type="Time" Nullable="false" Precision="7" />
           <NavigationProperty Name="PlanActivities" Relationship="Self.FK_PlanActivity_UserActivity" FromRole="UserActivity" ToRole="PlanActivity" />
           <NavigationProperty Name="User" Relationship="Self.FK_UserActivity_Person" FromRole="UserActivity" ToRole="User" />
+          <Property Name="DeletedValue" Type="Guid" />
         </EntityType>
         <Association Name="FK_Plan_User">
           <End Role="User" Type="Self.User" Multiplicity="1" />
@@ -283,6 +280,7 @@
           </AssociationSet>
         </EntityContainer>
         <EnumType Name="PlanActivityType" UnderlyingType="Byte" a:ExternalTypeName="HomePlan.Shared.Enumerations.PlanActivityType" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+        <EnumType Name="UserActivityIconType" a:ExternalTypeName="HomePlan.Shared.Enumerations.UserActivityIconType" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -322,17 +320,16 @@
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="AvatarImage" ColumnName="AvatarImage" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="ActiviationString" ColumnName="ActiviationString" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserActivities">
             <EntityTypeMapping TypeName="HomePlanModel.UserActivity">
               <MappingFragment StoreEntitySet="UserActivity">
+                <ScalarProperty Name="DeletedValue" ColumnName="DeletedValue" />
                 <ScalarProperty Name="UserActivityID" ColumnName="UserActivityID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="IconType" ColumnName="Icon" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="PlannedDuration" ColumnName="PlannedDuration" />
               </MappingFragment>

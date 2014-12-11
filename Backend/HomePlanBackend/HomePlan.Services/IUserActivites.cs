@@ -9,26 +9,53 @@ using HomePlan.Shared.DTO;
 
 namespace HomePlan.Services
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IUserActivites" in both code and config file together.
     [ServiceContract]
     public interface IUserActivites
     {
+        /// <summary>
+        /// Get all the user activities of the specified user
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         [OperationContract]
-        [WebGet(UriTemplate = "")]
-        List<UserActivityDto> GetUserActivities();
+        List<UserActivityDto> GetUserActivities(UserDto user);
 
+        /// <summary>
+        /// Get a single user activity
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="userActivityId"></param>
+        /// <returns></returns>
         [OperationContract]
-        [WebGet(UriTemplate = "/{userActivityId}")]
-        UserActivityDto GetUserActivity(string userActivityId);
+        UserActivityDto GetUserActivity(UserDto user, Guid userActivityId);
 
+        /// <summary>
+        /// Add a new user activity.
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="userActivity"></param>
+        /// <returns></returns>
         [OperationContract]
-        UserActivityDto AddUserActivity(UserActivityDto userActivity);
+        UserActivityDto AddUserActivity(UserDto user, UserActivityDto userActivity);
+        
+        /// <summary>
+        /// Edit an existing user activity.
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="userActivity"></param>
+        /// <returns></returns>
+        [OperationContract]
+        UserActivityDto EditUserActivity(UserDto user, UserActivityDto userActivity);
 
-        [OperationContract]
-        UserActivityDto EditUserActivity(UserActivityDto userActivity);
 
+        /// <summary>
+        /// Remove an existing UserActivity
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="userActivityId"></param>
+        /// <returns></returns>
         [OperationContract]
-        bool RemoveUserActivity(Guid userActivityId);
+        bool RemoveUserActivity(UserDto user, Guid userActivityId);
 
 
     }

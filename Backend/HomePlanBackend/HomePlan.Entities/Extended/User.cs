@@ -18,7 +18,8 @@ namespace HomePlan.Entities
                 UserId = this.UserID,
                 Name = this.UserName,
                 Email = this.Email,
-                AvatarUrl = this.AvatarImage
+                AvatarUrl = this.AvatarImage,
+                Password = this.Password
             };
         }
     }
