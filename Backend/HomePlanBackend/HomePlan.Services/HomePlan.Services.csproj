@@ -39,7 +39,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -66,10 +73,6 @@
     <Compile Include="AuthService.svc.cs">
       <DependentUpon>AuthService.svc</DependentUpon>
     </Compile>
-    <Compile Include="Dto\PlanActivityDto.cs" />
-    <Compile Include="Dto\PlanDto.cs" />
-    <Compile Include="Dto\UserActivityDto.cs" />
-    <Compile Include="Dto\UserDto.cs" />
     <Compile Include="IAuthService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -77,12 +80,23 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HomePlan.Entities\HomePlan.Entities.csproj">
+      <Project>{3d4e0add-a811-4473-8372-743f558e4f1d}</Project>
+      <Name>HomePlan.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HomePlan.Shared\HomePlan.Shared.csproj">
+      <Project>{7d404360-141f-4478-be42-949b7f3bf663}</Project>
+      <Name>HomePlan.Shared</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

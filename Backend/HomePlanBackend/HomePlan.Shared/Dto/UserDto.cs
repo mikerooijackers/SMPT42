@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace HomePlan.Services.DTO
+namespace HomePlan.Shared.DTO
 {
     /// <summary>
     /// Class for transferring the User object between clients.
@@ -12,5 +12,7 @@ namespace HomePlan.Services.DTO
     {
         public Guid UserId { get; set; }
         public String Name { get; set; }
+        public String Email { get; set; }
+        public String AvatarUrl { get; set; }
     }
 }

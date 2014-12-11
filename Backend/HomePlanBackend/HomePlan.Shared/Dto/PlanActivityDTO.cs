@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace HomePlan.Services.DTO
+namespace HomePlan.Shared.DTO
 {
     /// <summary>
     /// Class for transferring the PlanActivity object between clients

@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
-using HomePlan.Services.DTO;
+using HomePlan.Shared.DTO;
 
 namespace HomePlan.Services
 {
