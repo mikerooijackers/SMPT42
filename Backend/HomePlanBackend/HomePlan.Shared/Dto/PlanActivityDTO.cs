@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using HomePlan.Shared.Enumerations;
 
 namespace HomePlan.Shared.DTO
 {
@@ -10,5 +11,9 @@ namespace HomePlan.Shared.DTO
     /// </summary>
     public class PlanActivityDto
     {
+        public Guid PlanActivityId { get; set; }
+        public PlanActivityType Type { get; set; }
+        public long StartTimeTicks { get; set; }
+        public long EndTimeTicks { get; set; }
     }
 }

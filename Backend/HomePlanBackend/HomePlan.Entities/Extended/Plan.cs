@@ -5,13 +5,22 @@ using System.Text;
 using System.Threading.Tasks;
 using HomePlan.Shared.DTO;
 
-namespace HomePlan.Entities.Extended
+// ReSharper disable once CheckNamespace
+namespace HomePlan.Entities
 {
     public partial class Plan
     {
         public PlanDto ToPlanDto()
         {
-            throw new NotImplementedException();
+            return new PlanDto()
+            {
+                PlanId = this.PlanID,
+                PlannedActivities =
+                    this.PlanActivities.Where(p => !p.IsActual).Select(p => p.ToPlanActivityDto()).ToList(),
+                ActualActitivies = this.PlanActivities.Where(p => p.IsActual).Select(p => p.ToPlanActivityDto()).ToList(),
+                EndDateTime = this.EndDateTime,
+                StartDateTime = this.StartDateTime
+            };
         }
     }
 }

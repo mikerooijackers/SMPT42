@@ -189,7 +189,7 @@
           </Key>
           <Property Name="UserActivityID" Type="Guid" Nullable="false" />
           <Property Name="UserID" Type="Guid" Nullable="false" />
-          <Property Name="Type" Type="HomePlanModel.UserActivityType" Nullable="false" />
+          <Property Name="Type" Type="Byte" Nullable="false" />
           <Property Name="Icon" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PlannedDuration" Type="Time" Nullable="false" Precision="7" />
@@ -282,16 +282,7 @@
             <End Role="UserActivity" EntitySet="UserActivities" />
           </AssociationSet>
         </EntityContainer>
-        <EnumType Name="UserActivityType" UnderlyingType="Byte">
-          <Member Name="Personal" Value="1" />
-          <Member Name="Incidental" Value="2" />
-          <Member Name="WorkRelated" Value="3" />
-        </EnumType>
-        <EnumType Name="PlanActivityType" UnderlyingType="Byte">
-          <Member Name="WorkRelated" Value="1" />
-          <Member Name="Personal" Value="2" />
-          <Member Name="Incidental" Value="3" />
-        </EnumType>
+        <EnumType Name="PlanActivityType" UnderlyingType="Byte" a:ExternalTypeName="HomePlan.Shared.Enumerations.PlanActivityType" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

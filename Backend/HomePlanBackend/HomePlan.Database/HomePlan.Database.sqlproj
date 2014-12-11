@@ -62,7 +62,7 @@
   <ItemGroup>
     <Build Include="Tables\User.sql" />
     <Build Include="Tables\Plan.sql" />
-    <Build Include="Tables\Activity.sql" />
+    <Build Include="Tables\UserActivity.sql" />
     <Build Include="Tables\PlanActivity.sql" />
   </ItemGroup>
 </Project>

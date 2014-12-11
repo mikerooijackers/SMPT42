@@ -6,6 +6,7 @@ using System.ServiceModel;
 using System.Text;
 using HomePlan.Entities;
 using HomePlan.Shared.DTO;
+using HomePlan.Shared.Enumerations;
 
 namespace HomePlan.Services
 {
@@ -60,12 +61,12 @@ namespace HomePlan.Services
                         Order = order++, //Start the order at 1
                         StartTime = currentTime,
                         EndTime = endTime,
-                        Type = Entities.PlanActivityType.WorkRelated
+                        Type = Shared.Enumerations.PlanActivityType.WorkRelated
                     });
 
                     currentTime = endTime;
                     //Add the personal activity.
-                    UserActivity userActivity = userActivities.ElementAt(i)
+                    UserActivity userActivity = userActivities.ElementAt(i);
                     plan.PlanActivities.Add(new PlanActivity()
                     {
                         PlanActivityID = new Guid(),
@@ -89,11 +90,10 @@ namespace HomePlan.Services
                     Type = PlanActivityType.WorkRelated
                 });
 
-                entities.Plans.
+                entities.Plans.Add(plan);
+                entities.SaveChanges();
 
-
-
-                return null;
+                return plan.ToPlanDto();
             }
         }
     }

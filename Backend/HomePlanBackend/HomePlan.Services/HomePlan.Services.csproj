@@ -67,6 +67,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AuthenticationService.svc" />
+    <Content Include="PlanService.svc" />
+    <Content Include="UserActivites.svc" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -76,7 +78,15 @@
       <DependentUpon>AuthenticationService.svc</DependentUpon>
     </Compile>
     <Compile Include="IAuthenticationService.cs" />
+    <Compile Include="IPlanService.cs" />
+    <Compile Include="IUserActivites.cs" />
+    <Compile Include="PlanService.svc.cs">
+      <DependentUpon>PlanService.svc</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserActivites.svc.cs">
+      <DependentUpon>UserActivites.svc</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
