@@ -74,9 +74,8 @@ public class GetActivitiesService extends AsyncTask<Void, Void, List<UserActivit
 
             } else {
                 this.lastException = new Exception("Exception said: " + statusLine.getStatusCode()); //TODO: better execpeion
+                return null;
             }
-
-
         } catch(Exception ex)
         {
             this.lastException = ex;

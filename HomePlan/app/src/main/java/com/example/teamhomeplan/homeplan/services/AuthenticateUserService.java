@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 
 import com.example.teamhomeplan.homeplan.callback.AuthenticateCallback;
 import com.example.teamhomeplan.homeplan.domain.User;
+import com.example.teamhomeplan.homeplan.helper.Constants;
 
 /**
  * Created by Niek on 12/12/14.
@@ -23,8 +24,9 @@ public class AuthenticateUserService extends AsyncTask<Void, Void, User> {
 
     @Override
     protected User doInBackground(Void... params) {
-        return null;
+        String requestUrl = Constants.webservicebase; //TODO:!!!
 
+        return null;
         //TODO: implement.
     }
 

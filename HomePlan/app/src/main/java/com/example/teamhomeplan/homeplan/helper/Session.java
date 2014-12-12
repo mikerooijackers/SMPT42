@@ -11,4 +11,14 @@ public class Session {
 
     //TODO: Make this nicer.
    public static User authenticatedUser;
+
+    public static boolean isAuthenticated()
+    {
+        return authenticatedUser != null;
+    }
+
+    public static void signOut()
+    {
+        authenticatedUser = null;
+    }
 }
