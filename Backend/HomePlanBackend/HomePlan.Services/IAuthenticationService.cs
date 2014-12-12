@@ -14,7 +14,7 @@ namespace HomePlan.Services
         UserDto Authenticate(UserDto user);
 
         [OperationContract]
-        UserDto Register(UserDto userToRegister);
+        UserDto Register(UserDto user);
 
     }
 

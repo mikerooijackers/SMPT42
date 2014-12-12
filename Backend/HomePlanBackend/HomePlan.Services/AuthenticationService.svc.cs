@@ -19,7 +19,7 @@ namespace HomePlan.Services
             return authenticatedUser != null ? authenticatedUser.ToUserDto() : null;
         }
 
-        public UserDto Register(UserDto userToRegister)
+        public UserDto Register(UserDto user)
         {
             using (HomePlanEntities entities = new HomePlanEntities())
             {
@@ -27,9 +27,9 @@ namespace HomePlan.Services
 
                 Entities.User newUser = new Entities.User()
                 {
-                    Email = userToRegister.Email,
-                    UserName = userToRegister.Name,
-                    Password = userToRegister.Password,
+                    Email = user.Email,
+                    UserName = user.Name,
+                    Password = user.Password,
                     UserID = Guid.NewGuid()
                 };
 

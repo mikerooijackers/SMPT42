@@ -10,7 +10,7 @@ import android.view.MenuItem;
 import com.example.teamhomeplan.homeplan.helper.Session;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +21,6 @@ public class MainActivity extends ActionBarActivity {
         Class<? extends Activity> activityClass = null;
         if(Session.isAuthenticated())
         {
-
             //Show the main page;
         } else {
             //Show the Login activity.

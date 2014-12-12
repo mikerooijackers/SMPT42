@@ -1,6 +1,7 @@
 package com.example.teamhomeplan.homeplan.callback;
 
 import com.example.teamhomeplan.homeplan.domain.UserActivity;
+import com.example.teamhomeplan.homeplan.exception.ServiceException;
 
 import java.util.List;
 
@@ -12,5 +13,5 @@ import java.util.List;
 public interface UserActivitiesLoadedCallback {
     void onUserActivitiesLoaded(List<UserActivity> userActivitiesLoaded);
 
-    void onUserActivitiesLoadedException(Exception ex);
+    void onUserActivitiesLoadedException(ServiceException ex);
 }

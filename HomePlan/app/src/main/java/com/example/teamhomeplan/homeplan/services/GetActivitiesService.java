@@ -2,7 +2,10 @@ package com.example.teamhomeplan.homeplan.services;
 
 import android.os.AsyncTask;
 
+import com.example.teamhomeplan.homeplan.exception.ServiceException;
 import com.example.teamhomeplan.homeplan.callback.UserActivitiesLoadedCallback;
+import com.example.teamhomeplan.homeplan.exception.AsyncTaskException;
+import com.example.teamhomeplan.homeplan.exception.JsonException;
 import com.example.teamhomeplan.homeplan.domain.User;
 import com.example.teamhomeplan.homeplan.domain.UserActivity;
 import com.example.teamhomeplan.homeplan.helper.Constants;
@@ -32,7 +35,7 @@ import java.util.List;
 public class GetActivitiesService extends AsyncTask<Void, Void, List<UserActivity>> {
 
     private UserActivitiesLoadedCallback callback;
-    private Exception lastException = null;
+    private ServiceException lastException = null;
 
     public GetActivitiesService(UserActivitiesLoadedCallback callback) {
         this.callback = callback;
@@ -45,9 +48,11 @@ public class GetActivitiesService extends AsyncTask<Void, Void, List<UserActivit
         HttpClient httpClient = new DefaultHttpClient();
 
         List<UserActivity> userActivities;
-        Type respType = new TypeToken<ArrayList<UserActivity>>(){}.getType();
+        Type respType = new TypeToken<ArrayList<UserActivity>>() {
+        }.getType();
 
-            try {
+        List<UserActivity> returnValue = null;
+        try {
             Gson gson = GsonFactory.createGson();
 
             String json = gson.toJson(Session.authenticatedUser, User.class);
@@ -61,26 +66,24 @@ public class GetActivitiesService extends AsyncTask<Void, Void, List<UserActivit
             //Get the http response
             HttpResponse response = httpClient.execute(post);
             StatusLine statusLine = response.getStatusLine();
-            if(statusLine.getStatusCode() == HttpStatus.SC_OK)
-            {
-                ByteArrayOutputStream out = new ByteArrayOutputStream();
-                response.getEntity().writeTo(out);
 
-                String respJson = out.toString();
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            response.getEntity().writeTo(out);
 
+            String respJson = out.toString();
+            if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
                 userActivities = gson.fromJson(respJson, respType);
 
-                return userActivities;
+                returnValue = userActivities;
 
             } else {
-                this.lastException = new Exception("Exception said: " + statusLine.getStatusCode()); //TODO: better execpeion
-                return null;
+                this.lastException = gson.fromJson(respJson, JsonException.class);
             }
-        } catch(Exception ex)
-        {
-            this.lastException = ex;
-            return null;
+        } catch (Exception ex) {
+            this.lastException = new AsyncTaskException(ex);
         }
+
+        return returnValue;
     }
 
     @Override

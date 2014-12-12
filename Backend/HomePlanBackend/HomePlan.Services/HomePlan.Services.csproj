@@ -78,6 +78,10 @@
     <Compile Include="AuthenticationService.svc.cs">
       <DependentUpon>AuthenticationService.svc</DependentUpon>
     </Compile>
+    <Compile Include="ErrorHandler\ExtendedWebHttpElement.cs" />
+    <Compile Include="ErrorHandler\ExtendWebHttpBehavior.cs" />
+    <Compile Include="ErrorHandler\JsonErrorDetails.cs" />
+    <Compile Include="ErrorHandler\JsonErrorHandler.cs" />
     <Compile Include="Helpers\AuthenticationHelper.cs" />
     <Compile Include="IAuthenticationService.cs" />
     <Compile Include="IPlanService.cs" />

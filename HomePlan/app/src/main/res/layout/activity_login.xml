@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/txtUsername"
+        android:id="@+id/txtLoginEmail"
         android:layout_below="@+id/textView"
         android:layout_alignParentStart="true" />
 
@@ -36,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Username"
+        android:text="Email or username"
         android:id="@+id/textView"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
@@ -48,7 +48,24 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Password"
         android:id="@+id/textView2"
-        android:layout_below="@+id/txtUsername"
+        android:layout_below="@+id/txtLoginEmail"
         android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtError"
+        android:layout_below="@+id/btnLogin"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="25dp" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:id="@+id/btnRegister"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="61dp" />
 
 </RelativeLayout>
