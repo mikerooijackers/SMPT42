@@ -9,38 +9,38 @@ namespace HomePlan.Services.Helpers
 {
     public static class AuthenticationHelper
     {
-        public static Entities.User Authenticate(string username, string password, HomePlanEntities entities)
+        public static Entities.User Authenticate(string email, string password, HomePlanEntities entities)
         {
             //TODO: salt password
                 User authenticatedUser =
                     (from u in entities.Users
-                        where u.UserName == username && u.Password == password
+                        where u.Email == email && u.Password == password
                         select u).FirstOrDefault();
 
                 if (authenticatedUser == null)
                 {
-                    throw new UnauthorizedAccessException("Username and/or password is incorrect.");
+                    throw new UnauthorizedAccessException("Email and/or password is incorrect.");
                 }
 
                 return authenticatedUser;
         }
 
-        public static Entities.User Authenticate(string username, string password)
+        public static Entities.User Authenticate(string email, string password)
         {
             using (var entities = new HomePlanEntities())
             {
-                return Authenticate(username, password, entities);
+                return Authenticate(email, password, entities);
             }
         }
 
         public static Entities.User Authenticate(UserDto user)
         {
-            return Authenticate(user.Name, user.Password);
+            return Authenticate(user.Email, user.Password);
         }
 
         public static Entities.User Authenticate(UserDto user, HomePlanEntities entities)
         {
-            return Authenticate(user.Name, user.Password, entities);
+            return Authenticate(user.Email, user.Password, entities);
         }
     }
 }

@@ -24,6 +24,10 @@ namespace HomePlan.Services
             using (HomePlanEntities entities = new HomePlanEntities())
             {
                 //TODO: Encrypt / hash password.
+                if (entities.Users.Any(u => u.Email == user.Email))
+                {
+                    throw new Exception("A user with this email already exists.");
+                }
 
                 Entities.User newUser = new Entities.User()
                 {
@@ -35,7 +39,14 @@ namespace HomePlan.Services
 
                 entities.Users.Add(newUser);
 
-                entities.SaveChanges();
+                try
+                {
+                    entities.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("An unkown error occured.");
+                }
 
                 return newUser.ToUserDto();
             }

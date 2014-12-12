@@ -1,6 +1,7 @@
 package com.example.teamhomeplan.homeplan;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -24,6 +25,8 @@ public class RegisterActivity extends Activity implements RegistrationCallback {
         setContentView(R.layout.activity_register);
 
         findViewById(R.id.btnRegister).setOnClickListener(onRegisterButtonClick);
+
+        ((TextView) findViewById(R.id.lblError)).setText("");
     }
 
 
@@ -34,7 +37,8 @@ public class RegisterActivity extends Activity implements RegistrationCallback {
 
             String email = ((EditText) findViewById(R.id.txtEmail)).getText().toString();
             String name = ((EditText) findViewById(R.id.txtName)).getText().toString();
-            String password = ((EditText) findViewById(R.id.txtName)).getText().toString();
+            String password = ((EditText) findViewById(R.id.txtPassword)).getText().toString();
+            String passConfirm = ((EditText) findViewById(R.id.txtRegisterPasswordConfirm)).getText().toString();
 
             if(email.equals("")) {
                 errorLabel.setText("Please enter your email");
@@ -50,10 +54,22 @@ public class RegisterActivity extends Activity implements RegistrationCallback {
                 errorLabel.setText("Please enter a password");
                 return;
             }
-            if(!Utilities.isEmailValid(email))
+
+            if(passConfirm.equals(""))
             {
-                errorLabel.setText("Please enter a valid email address.");
+                errorLabel.setText("Please confirm your password");
                 return;
+            }
+
+            if(!passConfirm.equals(password))
+            {
+                errorLabel.setText("Your passwords don't match.");
+                return;
+            }
+                if(!Utilities.isEmailValid(email))
+                {
+                    errorLabel.setText("Please enter a valid email address.");
+                    return;
             }
 
             User userToRegister = new User(email, password);
@@ -71,7 +87,11 @@ public class RegisterActivity extends Activity implements RegistrationCallback {
 
     @Override
     public void afterRegistrationSuccessful(User registeredUser) {
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra("User", registeredUser);
+        this.setResult(1, resultIntent);
 
+        this.finish();
     }
 
     @Override

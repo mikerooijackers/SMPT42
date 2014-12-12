@@ -22,6 +22,8 @@ public class MainActivity extends Activity {
         if(Session.isAuthenticated())
         {
             //Show the main page;
+            activityClass = HomeProfileActivity.class;
+
         } else {
             //Show the Login activity.
             activityClass = LoginActivity.class;
@@ -29,6 +31,7 @@ public class MainActivity extends Activity {
 
         Intent newActivity = new Intent(this, activityClass);
         this.startActivity(newActivity);
+        this.finish();
     }
 
 }

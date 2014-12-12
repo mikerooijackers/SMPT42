@@ -42,6 +42,10 @@
             android:name=".RegisterActivity"
             android:label="@string/title_activity_register" >
         </activity>
+        <activity
+            android:name=".HomeProfileActivity"
+            android:label="@string/title_activity_home_profile" >
+        </activity>
     </application>
 
 </manifest>

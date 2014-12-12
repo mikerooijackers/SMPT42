@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.example.teamhomeplan.homeplan.callback.AuthenticateCallback;
 import com.example.teamhomeplan.homeplan.exception.ServiceException;
 import com.example.teamhomeplan.homeplan.domain.User;
+import com.example.teamhomeplan.homeplan.helper.Session;
 import com.example.teamhomeplan.homeplan.services.AuthenticateUserService;
 
 
@@ -20,6 +21,7 @@ import com.example.teamhomeplan.homeplan.services.AuthenticateUserService;
 public class LoginActivity extends Activity implements AuthenticateCallback {
 
     private LoginActivity context;
+    private final int REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +47,12 @@ public class LoginActivity extends Activity implements AuthenticateCallback {
             String email = ((EditText) findViewById(R.id.txtLoginEmail)).getText().toString();
             String password = ((EditText) findViewById(R.id.txtPassword)).getText().toString();
 
-            if (email == null) {
+            if (email.equals("")) {
                 errorText.setText("Username must be entered");
                 return;
             }
 
-            if (password == null) {
+            if (password.equals("")) {
                 errorText.setText("Password must be entered");
                 return;
             }
@@ -67,14 +69,32 @@ public class LoginActivity extends Activity implements AuthenticateCallback {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent, REQUEST_CODE);
         }
     };
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(resultCode == REQUEST_CODE) {
+            User newUser = data.getParcelableExtra("User");
+            if (newUser != null) {
+                ((EditText) findViewById(R.id.txtLoginEmail)).setText(newUser.getEmail());
+                ((TextView) findViewById(R.id.txtError)).setText("Woohoo. Succesfully registered!");
+            }
+        }
+
+    }
 
     @Override
     public void afterSuccesfullyAuthenticated(User user) {
         //TODO: Show the main screen.
+        Session.authenticatedUser = user;
+
+        Intent intent = new Intent(this, HomeProfileActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override

@@ -91,8 +91,8 @@ namespace HomePlan.Services.ErrorHandler
                     this._properties = new ConfigurationPropertyCollection
                 {
                     new ConfigurationProperty("helpEnabled", typeof(bool), false, null, null, ConfigurationPropertyOptions.None), 
-                    new ConfigurationProperty("defaultBodyStyle", typeof(WebMessageBodyStyle), WebMessageBodyStyle.Bare, null, null, ConfigurationPropertyOptions.None), 
-                    new ConfigurationProperty("defaultOutgoingResponseFormat", typeof(WebMessageFormat), WebMessageFormat.Xml, null, null, ConfigurationPropertyOptions.None), 
+                    new ConfigurationProperty("defaultBodyStyle", typeof(WebMessageBodyStyle), WebMessageBodyStyle.WrappedRequest, null, null, ConfigurationPropertyOptions.None), 
+                    new ConfigurationProperty("defaultOutgoingResponseFormat", typeof(WebMessageFormat), WebMessageFormat.Json, null, null, ConfigurationPropertyOptions.None), 
                     new ConfigurationProperty("automaticFormatSelectionEnabled", typeof(bool), false, null, null, ConfigurationPropertyOptions.None), 
                     new ConfigurationProperty("faultExceptionEnabled", typeof(bool), false, null, null, ConfigurationPropertyOptions.None)
                 };
