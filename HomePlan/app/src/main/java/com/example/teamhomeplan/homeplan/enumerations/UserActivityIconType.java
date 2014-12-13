@@ -6,11 +6,12 @@ package com.example.teamhomeplan.homeplan.enumerations;
  * Enumerations for the Icon type of the user activity.
  */
 public enum UserActivityIconType {
-    Dog(1),
-    Food(2),
-    Child(3),
-    Workout(4),
-    Doctor(5);
+    NONE(0),
+    DOG(1),
+    FOOD(2),
+    CHILD(3),
+    WORKOUT(4),
+    DOCTOR(5);
 
 
     private final int key;

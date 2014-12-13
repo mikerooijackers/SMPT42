@@ -27,6 +27,7 @@ public class RegisterActivity extends Activity implements RegistrationCallback {
     private static final int SELECT_PHOTO = 100;
     private String selectedImageEncoded = null;
     private Logger logger = Logger.getLogger(this.getClass().getName());
+    private View loader;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +43,8 @@ public class RegisterActivity extends Activity implements RegistrationCallback {
 
         //profile picture click handler
         findViewById(R.id.register_btnChooseAvatar).setOnClickListener(onChooseAvatarClick);
+
+        this.loader = findViewById(R.id.registerLoader);
     }
 
     protected View.OnClickListener onChooseAvatarClick = new View.OnClickListener() {
@@ -113,6 +116,7 @@ public class RegisterActivity extends Activity implements RegistrationCallback {
                 return;
             }
 
+            loader.setVisibility(View.VISIBLE);
             User userToRegister = new User(email, password);
             userToRegister.setName(name);
 
@@ -123,6 +127,7 @@ public class RegisterActivity extends Activity implements RegistrationCallback {
 
     @Override
     public void afterRegistrationSuccessful(User registeredUser) {
+        loader.setVisibility(View.GONE);
         Intent resultIntent = new Intent();
         resultIntent.putExtra("User", registeredUser);
         this.setResult(1, resultIntent);
@@ -132,6 +137,7 @@ public class RegisterActivity extends Activity implements RegistrationCallback {
 
     @Override
     public void afterRegistrationFailed(ServiceException exception) {
+        loader.setVisibility(View.GONE);
         TextView errorLabel = (TextView) findViewById(R.id.lblError);
         errorLabel.setText(exception.getExceptionMessage());
     }

@@ -6,6 +6,8 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.example.teamhomeplan.homeplan.RegisterActivity">
 
+    <include android:id="@+id/registerLoader" layout="@layout/loader"/>
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"

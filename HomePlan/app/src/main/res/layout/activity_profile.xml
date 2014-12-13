@@ -9,14 +9,14 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="200dp"
+        android:layout_height="300dp"
         android:layout_alignParentTop="true"
         android:id="@+id/linearLayout2"
         android:layout_centerVertical="true">
 
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
             android:id="@+id/img_Profile"
             android:layout_gravity="center" />
 
@@ -54,4 +54,13 @@
         android:layout_below="@+id/txt_Profile_Name"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="59dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
+        android:id="@+id/profile_lblError"
+        android:layout_below="@+id/txt_Profile_Name"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

@@ -58,5 +58,30 @@ namespace HomePlan.Services
                 return newUser.ToUserDto();
             }
         }
+
+        public UserDto EditUserProperties(UserDto user, string newProfileImage)
+        {
+            using (var entities = new HomePlanEntities())
+            {
+                User userToEdit = entities.Users.Find(user.UserId);
+
+                if (userToEdit == null)
+                {
+                    throw new ArgumentException("User with ID specified does not exist.");
+                }
+
+                userToEdit.UserName = user.Name;
+
+                if (!String.IsNullOrWhiteSpace(newProfileImage))
+                {
+                    string newAvatarUrl = ImageHelper.SaveImage(userToEdit, newProfileImage);
+                    userToEdit.AvatarImage = newAvatarUrl;
+                }
+
+                entities.SaveChanges();
+
+                return userToEdit.ToUserDto();
+            }
+        }
     }
 }

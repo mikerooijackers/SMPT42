@@ -22,6 +22,9 @@ namespace HomePlan.Services
         [OperationContract]
         UserDto Register(UserDto user, string profileImage);
 
+        [OperationContract]
+        UserDto EditUserProperties(UserDto user, string newProfileImage);
+
     }
 
 }

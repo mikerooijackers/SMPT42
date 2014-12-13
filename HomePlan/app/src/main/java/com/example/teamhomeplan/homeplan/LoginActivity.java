@@ -1,11 +1,13 @@
 package com.example.teamhomeplan.homeplan;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.teamhomeplan.homeplan.callback.AuthenticateCallback;
@@ -13,6 +15,7 @@ import com.example.teamhomeplan.homeplan.exception.ServiceException;
 import com.example.teamhomeplan.homeplan.domain.User;
 import com.example.teamhomeplan.homeplan.helper.Session;
 import com.example.teamhomeplan.homeplan.tasks.AuthenticateUserTask;
+import com.pnikosis.materialishprogress.ProgressWheel;
 
 
 /**
@@ -22,6 +25,7 @@ public class LoginActivity extends Activity implements AuthenticateCallback {
 
     private LoginActivity context;
     private final int REQUEST_CODE = 1;
+    private RelativeLayout loader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +41,8 @@ public class LoginActivity extends Activity implements AuthenticateCallback {
         //Set the register button click handler
         findViewById(R.id.btnRegister).setOnClickListener(registerButtonClickListener);
 
+        RelativeLayout loader = (RelativeLayout) findViewById(R.id.loginLoaded);
+        this.loader =loader;
     }
 
     private View.OnClickListener loginButtonClickListener = new View.OnClickListener() {
@@ -60,6 +66,7 @@ public class LoginActivity extends Activity implements AuthenticateCallback {
 
             User userToRegister = new User(email, password);
 
+            loader.setVisibility(View.VISIBLE);
             AuthenticateUserTask authenticationService = new AuthenticateUserTask(context, userToRegister);
             authenticationService.execute();
         }
@@ -94,11 +101,13 @@ public class LoginActivity extends Activity implements AuthenticateCallback {
 
         Intent intent = new Intent(this, HomeProfileActivity.class);
         startActivity(intent);
+        loader.setVisibility(View.GONE);
         finish();
     }
 
     @Override
     public void afterAuthenticationFailed(ServiceException error) {
+        loader.setVisibility(View.GONE);
         TextView errorText = (TextView) findViewById(R.id.txtError);
         ((EditText) findViewById(R.id.txtPassword)).setText("");
 
