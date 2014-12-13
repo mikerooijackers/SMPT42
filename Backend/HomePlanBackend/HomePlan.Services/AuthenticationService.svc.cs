@@ -7,6 +7,7 @@ using System.ServiceModel.Activation;
 using System.ServiceModel.Web;
 using System.Text;
 using HomePlan.Entities;
+using HomePlan.Services.Helpers;
 using HomePlan.Shared.DTO;
 
 namespace HomePlan.Services
@@ -19,7 +20,7 @@ namespace HomePlan.Services
             return authenticatedUser != null ? authenticatedUser.ToUserDto() : null;
         }
 
-        public UserDto Register(UserDto user)
+        public UserDto Register(UserDto user, string profileImage)
         {
             using (HomePlanEntities entities = new HomePlanEntities())
             {
@@ -36,6 +37,12 @@ namespace HomePlan.Services
                     Password = user.Password,
                     UserID = Guid.NewGuid()
                 };
+
+                if (!String.IsNullOrWhiteSpace(profileImage))
+                {
+                    string imageLocation = ImageHelper.SaveImage(newUser, profileImage);
+                    newUser.AvatarImage = imageLocation;
+                }
 
                 entities.Users.Add(newUser);
 

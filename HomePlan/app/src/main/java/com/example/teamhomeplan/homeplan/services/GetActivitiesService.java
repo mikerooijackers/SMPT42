@@ -26,6 +26,8 @@ import java.io.ByteArrayOutputStream;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by Niek on 12/12/14.
@@ -91,14 +93,11 @@ public class GetActivitiesService extends AsyncTask<Void, Void, List<UserActivit
         super.onPostExecute(userActivities);
 
         if (this.lastException != null) {
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, this.lastException.getExceptionMessage() + this.lastException.getExceptionStackTrace());
             this.callback.onUserActivitiesLoadedException(this.lastException);
-            //TODO: Handle the exception
             return;
         }
 
-
         this.callback.onUserActivitiesLoaded(userActivities);
-
-        super.onPostExecute(userActivities);
     }
 }

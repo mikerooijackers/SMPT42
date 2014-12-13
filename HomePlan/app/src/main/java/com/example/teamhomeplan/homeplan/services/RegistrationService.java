@@ -35,15 +35,17 @@ public class RegistrationService extends AsyncTask<Void, Void, User> {
 
     private RegistrationCallback callback;
     private User userToRegister;
+    private String encodedImage;
     private RegistrationService context;
 
-    public RegistrationService(RegistrationCallback callback, User userToRegister)
+    public RegistrationService(RegistrationCallback callback, User userToRegister, String encodedImage)
     {
         if(callback == null) throw new IllegalArgumentException("callback");
         if(userToRegister == null) throw new IllegalArgumentException("userToRegister");
 
         this.serviceException = null;
         this.callback = callback;
+        this.encodedImage = encodedImage;
         this.userToRegister = userToRegister;
         this.context = this;
     }
@@ -60,9 +62,14 @@ public class RegistrationService extends AsyncTask<Void, Void, User> {
             JsonObject rootObject = new JsonObject();
             JsonElement userElement = gson.toJsonTree(this.userToRegister);
             rootObject.add("user", userElement);
+            if(this.encodedImage != null)
+            {
+                rootObject.add("profileImage", gson.toJsonTree(encodedImage));
+            }
 
             HttpPost post = new HttpPost(requestUrl);
-            StringEntity se = new StringEntity(rootObject.toString(), "UTF-8");
+            String s = rootObject.toString();
+            StringEntity se = new StringEntity(s, "UTF-8");
             se.setContentType("application/json");
             post.setEntity(se);
 
