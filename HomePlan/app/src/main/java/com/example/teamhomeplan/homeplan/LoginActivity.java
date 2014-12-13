@@ -12,7 +12,7 @@ import com.example.teamhomeplan.homeplan.callback.AuthenticateCallback;
 import com.example.teamhomeplan.homeplan.exception.ServiceException;
 import com.example.teamhomeplan.homeplan.domain.User;
 import com.example.teamhomeplan.homeplan.helper.Session;
-import com.example.teamhomeplan.homeplan.services.AuthenticateUserService;
+import com.example.teamhomeplan.homeplan.tasks.AuthenticateUserTask;
 
 
 /**
@@ -60,7 +60,7 @@ public class LoginActivity extends Activity implements AuthenticateCallback {
 
             User userToRegister = new User(email, password);
 
-            AuthenticateUserService authenticationService = new AuthenticateUserService(context, userToRegister);
+            AuthenticateUserTask authenticationService = new AuthenticateUserTask(context, userToRegister);
             authenticationService.execute();
         }
     };

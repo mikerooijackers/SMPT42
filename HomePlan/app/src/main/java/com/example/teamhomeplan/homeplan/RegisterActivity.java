@@ -6,10 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.MediaStore;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -19,7 +16,7 @@ import com.example.teamhomeplan.homeplan.callback.RegistrationCallback;
 import com.example.teamhomeplan.homeplan.domain.User;
 import com.example.teamhomeplan.homeplan.exception.ServiceException;
 import com.example.teamhomeplan.homeplan.helper.Utilities;
-import com.example.teamhomeplan.homeplan.services.RegistrationService;
+import com.example.teamhomeplan.homeplan.tasks.RegistrationTask;
 
 import java.io.IOException;
 import java.util.logging.Level;
@@ -119,7 +116,7 @@ public class RegisterActivity extends Activity implements RegistrationCallback {
             User userToRegister = new User(email, password);
             userToRegister.setName(name);
 
-            RegistrationService registerService = new RegistrationService(RegisterActivity.this, userToRegister, selectedImageEncoded);
+            RegistrationTask registerService = new RegistrationTask(RegisterActivity.this, userToRegister, selectedImageEncoded);
             registerService.execute();
         }
     };

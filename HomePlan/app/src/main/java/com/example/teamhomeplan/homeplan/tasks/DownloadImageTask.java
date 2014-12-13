@@ -1,4 +1,4 @@
-package com.example.teamhomeplan.homeplan.services;
+package com.example.teamhomeplan.homeplan.tasks;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -17,12 +17,12 @@ import java.util.logging.Logger;
  *
  * DownloadImageService
  */
-public class DownloadImageService extends AsyncTask<Void, Void, Bitmap> {
+public class DownloadImageTask extends AsyncTask<Void, Void, Bitmap> {
     private ImageDownloadedCallback callback;
     private ServiceException lastException;
     private String requestUrl;
 
-    public DownloadImageService(ImageDownloadedCallback callback, String requestUrl)
+    public DownloadImageTask(ImageDownloadedCallback callback, String requestUrl)
     {
         this.callback = callback;
         this.requestUrl = requestUrl;

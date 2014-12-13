@@ -1,4 +1,4 @@
-package com.example.teamhomeplan.homeplan.services;
+package com.example.teamhomeplan.homeplan.tasks;
 
 import android.os.AsyncTask;
 
@@ -30,15 +30,15 @@ import java.util.logging.Logger;
  *
  * Async task for registering a user
  */
-public class RegistrationService extends AsyncTask<Void, Void, User> {
+public class RegistrationTask extends AsyncTask<Void, Void, User> {
     private ServiceException serviceException;
 
     private RegistrationCallback callback;
     private User userToRegister;
     private String encodedImage;
-    private RegistrationService context;
+    private RegistrationTask context;
 
-    public RegistrationService(RegistrationCallback callback, User userToRegister, String encodedImage)
+    public RegistrationTask(RegistrationCallback callback, User userToRegister, String encodedImage)
     {
         if(callback == null) throw new IllegalArgumentException("callback");
         if(userToRegister == null) throw new IllegalArgumentException("userToRegister");

@@ -1,4 +1,4 @@
-package com.example.teamhomeplan.homeplan.services;
+package com.example.teamhomeplan.homeplan.tasks;
 
 import android.os.AsyncTask;
 
@@ -30,14 +30,14 @@ import java.util.logging.Logger;
  * <p/>
  * Service for authenticating the user
  */
-public class AuthenticateUserService extends AsyncTask<Void, Void, User> {
+public class AuthenticateUserTask extends AsyncTask<Void, Void, User> {
 
     private AuthenticateCallback callback;
     private ServiceException lastException;
     private User usertoAuthenticate;
     private Logger logger = Logger.getLogger(this.getClass().getName());
 
-    public AuthenticateUserService(AuthenticateCallback callback, User userToAuthenticate) {
+    public AuthenticateUserTask(AuthenticateCallback callback, User userToAuthenticate) {
         if(callback == null)
         {
             throw new IllegalArgumentException("no callback was specified");

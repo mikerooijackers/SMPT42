@@ -1,17 +1,12 @@
 package com.example.teamhomeplan.homeplan;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -19,10 +14,9 @@ import com.example.teamhomeplan.homeplan.callback.ImageDownloadedCallback;
 import com.example.teamhomeplan.homeplan.exception.ServiceException;
 import com.example.teamhomeplan.homeplan.helper.Session;
 import com.example.teamhomeplan.homeplan.helper.Utilities;
-import com.example.teamhomeplan.homeplan.services.DownloadImageService;
+import com.example.teamhomeplan.homeplan.tasks.DownloadImageTask;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -48,7 +42,7 @@ public class ProfileActivity extends ActionBarActivity implements ImageDownloade
         ImageView avatarImage = (ImageView) findViewById(R.id.img_Profile);
         if((avatarUrl != null) && !avatarUrl.equals(""))
         {
-            DownloadImageService imgService = new DownloadImageService(this, avatarUrl);
+            DownloadImageTask imgService = new DownloadImageTask(this, avatarUrl);
             imgService.execute();
         } else {
             avatarImage.setImageDrawable(getResources().getDrawable(R.drawable.person_placeholder));

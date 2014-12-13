@@ -1,4 +1,4 @@
-package com.example.teamhomeplan.homeplan.services;
+package com.example.teamhomeplan.homeplan.tasks;
 
 import android.os.AsyncTask;
 
@@ -34,12 +34,12 @@ import java.util.logging.Logger;
  * <p/>
  * Get all the UserActivities of the current user.
  */
-public class GetActivitiesService extends AsyncTask<Void, Void, List<UserActivity>> {
+public class GetActivitiesTask extends AsyncTask<Void, Void, List<UserActivity>> {
 
     private UserActivitiesLoadedCallback callback;
     private ServiceException lastException = null;
 
-    public GetActivitiesService(UserActivitiesLoadedCallback callback) {
+    public GetActivitiesTask(UserActivitiesLoadedCallback callback) {
         this.callback = callback;
     }
 
