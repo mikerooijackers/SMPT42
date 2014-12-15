@@ -1,6 +1,7 @@
 package com.example.teamhomeplan.homeplan.tasks;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.example.teamhomeplan.homeplan.exception.ServiceException;
 import com.example.teamhomeplan.homeplan.callback.UserActivitiesLoadedCallback;
@@ -93,7 +94,7 @@ public class GetActivitiesTask extends AsyncTask<Void, Void, List<UserActivity>>
         super.onPostExecute(userActivities);
 
         if (this.lastException != null) {
-            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, this.lastException.getExceptionMessage() + this.lastException.getExceptionStackTrace());
+            Log.e("TaskError", this.lastException.getExceptionMessage());
             this.callback.onUserActivitiesLoadedException(this.lastException);
             return;
         }

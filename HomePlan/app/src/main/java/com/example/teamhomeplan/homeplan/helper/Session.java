@@ -17,10 +17,18 @@ public class Session {
     //TODO: Make this nicer.
     public static User authenticatedUser;
 
+    /**
+     * Check if the user of the application is authenticated
+     * @return True when authenticated, false when not
+     */
     public static boolean isAuthenticated() {
         return authenticatedUser != null;
     }
 
+    /**
+     * Sign the user out of the applicatior
+     * @param context the current activity as context
+     */
     public static void signOut(Activity context) {
         authenticatedUser = null;
         Intent newActivity = new Intent(context, LoginActivity.class);

@@ -25,7 +25,7 @@ public class UserActivity {
     private UserActivityIconType iconType;
 
     @SerializedName("PlannedDuration")
-    private String plannedDuration; //TODO: Make this a timespan or long ticks.
+    private long plannedDuration; //Planned duration in milliseconds
 
     public UUID getUserActivityId() {
         return userActivityId;
@@ -59,11 +59,11 @@ public class UserActivity {
         this.iconType = iconType;
     }
 
-    public String getPlannedDuration() {
+    public long getPlannedDuration() {
         return plannedDuration;
     }
 
-    public void setPlannedDuration(String plannedDuration) {
+    public void setPlannedDuration(long plannedDuration) {
         this.plannedDuration = plannedDuration;
     }
 }

@@ -1,6 +1,7 @@
 package com.example.teamhomeplan.homeplan.tasks;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.example.teamhomeplan.homeplan.callback.AuthenticateCallback;
 import com.example.teamhomeplan.homeplan.exception.ServiceException;
@@ -100,7 +101,7 @@ public class AuthenticateUserTask extends AsyncTask<Void, Void, User> {
         {
            this.callback.afterSuccesfullyAuthenticated(user);
         } else {
-            logger.log(Level.SEVERE, lastException.getExceptionMessage());
+            Log.e("TaskException", lastException.toString());
             this.callback.afterAuthenticationFailed(this.lastException);
         }
     }

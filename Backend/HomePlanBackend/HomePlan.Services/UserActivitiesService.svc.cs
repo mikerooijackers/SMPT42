@@ -13,7 +13,7 @@ namespace HomePlan.Services
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "UserActivites" in code, svc and config file together.
     // NOTE: In order to launch WCF Test Client for testing this service, please select UserActivites.svc or UserActivites.svc.cs at the Solution Explorer and start debugging.
-    public class UserActivites : IUserActivites
+    public class UserActivitiesService : IUserActivitiesService
     {
         public List<UserActivityDto> GetUserActivities(UserDto user)
         {
@@ -52,58 +52,42 @@ namespace HomePlan.Services
             }
         }
 
-        public UserActivityDto AddUserActivity(UserDto user, UserActivityDto userActivity)
-        {
-            using (var entities = new HomePlanEntities())
-            {
-                var authenticatedUSer = AuthenticationHelper.Authenticate(user, entities);
-
-                UserActivity newActivity = new UserActivity()
-                {
-                    IconType = userActivity.IconType,
-                    Name = userActivity.Name,
-                    PlannedDuration = userActivity.PlannedDuration,
-                    UserID = authenticatedUSer.UserID,
-                    UserActivityID = Guid.NewGuid()
-                };
-
-                entities.UserActivities.Add(newActivity);
-
-                entities.SaveChanges();
-
-                return newActivity.ToUserActivityDto();
-            }
-        }
-
-        public UserActivityDto EditUserActivity(UserDto user, UserActivityDto userActivity)
+        public UserActivityDto Mutate(UserDto user, UserActivityDto userActivity)
         {
             using (var entities = new HomePlanEntities())
             {
                 var authenticatedUser = AuthenticationHelper.Authenticate(user, entities);
 
-                var activityToEdit =
-                    entities.UserActivities.FirstOrDefault(
-                        ua => ua.UserActivityID == userActivity.UserActivityId && ua.DeletedValue == null);
-
-                if (activityToEdit == null)
+                UserActivity userActivityToUpdate = null;
+                if (userActivity.UserActivityId != Guid.Empty)
                 {
-                    throw new ArgumentException(String.Format("User activity with id {0} does not exist.",
-                        userActivity.UserActivityId));
+                    userActivityToUpdate = entities.UserActivities.Find((userActivity.UserActivityId));
+
+                    if (userActivityToUpdate.UserID != authenticatedUser.UserID)
+                    {
+                        throw new UnauthorizedAccessException("Not your activity, BITCH");
+                    }
                 }
-                else if (activityToEdit.UserID != authenticatedUser.UserID)
+                else
                 {
-                    throw new AuthenticationException("You are not allowed to edit the activity of this user.");
+                    userActivityToUpdate = entities.UserActivities.Add(new UserActivity()
+                    {
+                        UserActivityID = Guid.NewGuid(),
+                        UserID = authenticatedUser.UserID
+                    });
                 }
 
-                activityToEdit.Name = userActivity.Name;
-                activityToEdit.IconType = userActivity.IconType;
-                activityToEdit.PlannedDuration = userActivity.PlannedDuration;
+                userActivityToUpdate.IconType = userActivity.IconType;
+                userActivityToUpdate.Name = userActivity.Name;
+                userActivityToUpdate.PlannedDuration = TimeSpan.FromMilliseconds(userActivity.PlannedDurationMilliseconds);
+
 
                 entities.SaveChanges();
 
-                return activityToEdit.ToUserActivityDto();
+                return userActivityToUpdate.ToUserActivityDto();
             }
         }
+       
 
         public bool RemoveUserActivity(UserDto user, Guid userActivityId)
         {

@@ -31,4 +31,10 @@ public class JsonException implements ServiceException{
     public String getExceptionType() {
         return exceptionType;
     }
+
+    @Override
+    public String toString()
+    {
+        return this.getExceptionType() + this.getExceptionMessage() + "\n" + this.getExceptionStackTrace();
+    }
 }
