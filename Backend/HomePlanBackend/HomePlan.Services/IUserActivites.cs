@@ -10,7 +10,7 @@ using HomePlan.Shared.DTO;
 namespace HomePlan.Services
 {
     [ServiceContract]
-    public interface IUserActivites
+    public interface IUserActivitiesService
     {
         /// <summary>
         /// Get all the user activities of the specified user
@@ -36,17 +36,8 @@ namespace HomePlan.Services
         /// <param name="userActivity"></param>
         /// <returns></returns>
         [OperationContract]
-        UserActivityDto AddUserActivity(UserDto user, UserActivityDto userActivity);
-        
-        /// <summary>
-        /// Edit an existing user activity.
-        /// </summary>
-        /// <param name="user"></param>
-        /// <param name="userActivity"></param>
-        /// <returns></returns>
-        [OperationContract]
-        UserActivityDto EditUserActivity(UserDto user, UserActivityDto userActivity);
-
+        UserActivityDto Mutate(UserDto user, UserActivityDto userActivity);
+       
 
         /// <summary>
         /// Remove an existing UserActivity

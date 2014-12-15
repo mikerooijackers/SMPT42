@@ -11,6 +11,7 @@ namespace HomePlan.Shared.Enumerations
     /// </summary>
     public enum UserActivityIconType
     {
+        None =0,
         Dog = 1,
         Food = 2,
         Child = 3,

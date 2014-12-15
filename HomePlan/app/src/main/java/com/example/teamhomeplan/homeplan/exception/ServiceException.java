@@ -9,4 +9,7 @@ public interface ServiceException {
     String getExceptionMessage();
     String getExceptionStackTrace();
     String getExceptionType();
+
+    @Override
+    String toString();
 }

@@ -69,7 +69,7 @@
   <ItemGroup>
     <Content Include="AuthenticationService.svc" />
     <Content Include="PlanService.svc" />
-    <Content Include="UserActivites.svc" />
+    <Content Include="UserActivitiesService.svc" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -96,8 +96,8 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="UserActivites.svc.cs">
-      <DependentUpon>UserActivites.svc</DependentUpon>
+    <Compile Include="UserActivitiesService.svc.cs">
+      <DependentUpon>UserActivitiesService.svc</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

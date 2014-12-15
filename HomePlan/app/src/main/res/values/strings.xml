@@ -8,5 +8,6 @@
     <string name="title_activity_register">RegisterActivity</string>
     <string name="title_activity_home_profile">HomeProfileActivity</string>
     <string name="title_activity_profile">ProfileActivity</string>
+    <string name="title_activity_mutate_user">MutateUserActivityActivity</string>
 
 </resources>

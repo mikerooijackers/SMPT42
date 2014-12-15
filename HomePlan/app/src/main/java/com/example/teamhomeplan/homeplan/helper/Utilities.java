@@ -19,20 +19,29 @@ import java.util.regex.Pattern;
  */
 public class Utilities {
 
+    /**
+     * Checks whether or not a String is a valid email
+     * @param email The string to validate
+     * @return True if valid, false when not
+     */
     public static boolean isEmailValid(String email) {
         boolean isValid = false;
 
         String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
-        CharSequence inputStr = email;
 
         Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(inputStr);
+        Matcher matcher = pattern.matcher(email);
         if (matcher.matches()) {
             isValid = true;
         }
         return isValid;
     }
 
+    /**
+     * Encodes a Bitmap image to a base64 string
+     * @param image The Bitmap image to encode
+     * @return the encoded base64 string
+     */
     public static String encodeTobase64(Bitmap image)
     {
         Bitmap immagex=image;
@@ -44,12 +53,22 @@ public class Utilities {
         return imageEncoded;
     }
 
+    /**
+     * Decode a base64 string to a bitmap
+     * @param input The base64 string
+     * @return The resulting Bitmap
+     */
     public static Bitmap decodeBase64(String input)
     {
         byte[] decodedByte = Base64.decode(input, 0);
         return BitmapFactory.decodeByteArray(decodedByte, 0, decodedByte.length);
     }
 
+    /**
+     * Get the URL for a user avatar.
+     * @param user the user to get the avatar for
+     * @return the URL as a string
+     */
     public static String getAvatarUrl(User user)
     {
         if(user == null) throw new IllegalArgumentException("User was null");
@@ -59,6 +78,23 @@ public class Utilities {
             return null;
         } else {
             return Constants.webservicebase +"images/" + user.getAvatarUrl();
+        }
+    }
+
+    /**
+     * Try if a string can be parsed to an int
+     * @param value The String value to parse
+     * @return true if parsed, false if not a number
+     */
+    public static boolean tryParseInt(String value)
+    {
+        try{
+            //noinspection ResultOfMethodCallIgnored
+            Integer.parseInt(value);
+            return true;
+        }catch (NumberFormatException nfe)
+        {
+            return false;
         }
     }
 

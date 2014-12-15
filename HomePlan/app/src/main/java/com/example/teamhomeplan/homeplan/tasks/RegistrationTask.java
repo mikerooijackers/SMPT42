@@ -1,6 +1,7 @@
 package com.example.teamhomeplan.homeplan.tasks;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.example.teamhomeplan.homeplan.callback.RegistrationCallback;
 import com.example.teamhomeplan.homeplan.domain.User;
@@ -101,7 +102,7 @@ public class RegistrationTask extends AsyncTask<Void, Void, User> {
 
         if(this.serviceException != null)
         {
-            Logger.getLogger(context.getClass().getName()).log(Level.SEVERE, serviceException.getExceptionStackTrace());
+            Log.e("TaskException", this.serviceException.toString());
             this.callback.afterRegistrationFailed(this.serviceException);
         } else {
             this.callback.afterRegistrationSuccessful(registeredUser);

@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="HomePlan.Services.UserActivites" CodeBehind="UserActivitiesService.svc.cs" %>

@@ -3,6 +3,7 @@ package com.example.teamhomeplan.homeplan.tasks;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.example.teamhomeplan.homeplan.callback.ImageDownloadedCallback;
 import com.example.teamhomeplan.homeplan.exception.AsyncTaskException;
@@ -50,7 +51,7 @@ public class DownloadImageTask extends AsyncTask<Void, Void, Bitmap> {
         {
             this.callback.onAfterImageDownloaded(bitmap);
         } else {
-            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, this.lastException.toString());
+            Log.e("TaskError", this.lastException.toString());
             this.callback.onAfterDownloadFailed(this.lastException);
         }
     }

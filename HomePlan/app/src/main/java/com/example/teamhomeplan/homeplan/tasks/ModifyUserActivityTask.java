@@ -1,17 +1,16 @@
 package com.example.teamhomeplan.homeplan.tasks;
 
-import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.example.teamhomeplan.homeplan.callback.RegistrationCallback;
-import com.example.teamhomeplan.homeplan.domain.User;
+import com.example.teamhomeplan.homeplan.callback.ModifiedUserActivityCallback;
+import com.example.teamhomeplan.homeplan.domain.UserActivity;
 import com.example.teamhomeplan.homeplan.exception.AsyncTaskException;
 import com.example.teamhomeplan.homeplan.exception.JsonException;
 import com.example.teamhomeplan.homeplan.exception.ServiceException;
 import com.example.teamhomeplan.homeplan.helper.Constants;
 import com.example.teamhomeplan.homeplan.helper.GsonFactory;
-import com.example.teamhomeplan.homeplan.helper.Utilities;
+import com.example.teamhomeplan.homeplan.helper.Session;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -27,45 +26,38 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import java.io.ByteArrayOutputStream;
 
 /**
- * Created by Niek on 12/13/2014.
+ * Created by Niek on 12/15/2014.
  *
- * Task for updating the profile of a new user.
+ * Task for adding or modifying a user activity.
  */
-public class UpdateUserProfileTask extends AsyncTask<Void, Void, User> {
+public class ModifyUserActivityTask extends AsyncTask<Void, Void, UserActivity> {
+    private final static String requestUrl = Constants.webservicebase + "UserActivitiersService.svc/Mutate";
 
-    private final static String requestURL = Constants.webservicebase + "AuthenticationService.svc/EditUserProperties";
-    private ServiceException taskException;
-    private final RegistrationCallback callback;
-    private final User userToEdit;
-    private final Bitmap newImage;
+    private final UserActivity userActivityToUpdate;
+    private final ModifiedUserActivityCallback callback;
+    private ServiceException lastException;
 
-    public UpdateUserProfileTask(RegistrationCallback callback, User userToEdit, Bitmap newImage)
+    public ModifyUserActivityTask(UserActivity userActivityToUpdate, ModifiedUserActivityCallback callback)
     {
 
+        this.userActivityToUpdate = userActivityToUpdate;
         this.callback = callback;
-        this.userToEdit = userToEdit;
-        this.newImage = newImage;
     }
 
     @Override
-    protected User doInBackground(Void... params) {
-
-        User updatedUser = null;
+    protected UserActivity doInBackground(Void... params) {
+        UserActivity resultActivity= null;
         try
         {
             HttpClient client = new DefaultHttpClient();
             Gson gson = GsonFactory.createGson();
 
             JsonObject rootObject = new JsonObject();
-            JsonElement userElement = gson.toJsonTree(this.userToEdit);
+            JsonElement userElement = gson.toJsonTree(Session.authenticatedUser);
             rootObject.add("user", userElement);
-            if(this.newImage != null)
-            {
-                String encodedImage = Utilities.encodeTobase64(this.newImage);
-                rootObject.add("newProfileImage", gson.toJsonTree(encodedImage));
-            }
+            rootObject.add("userActivity", gson.toJsonTree(userActivityToUpdate));
 
-            HttpPost post = new HttpPost(requestURL);
+            HttpPost post = new HttpPost(requestUrl);
             String s = rootObject.toString();
             StringEntity se = new StringEntity(s, "UTF-8");
             se.setContentType("application/json");
@@ -81,28 +73,31 @@ public class UpdateUserProfileTask extends AsyncTask<Void, Void, User> {
 
             if(statusLine.getStatusCode() == HttpStatus.SC_OK)
             {
-                updatedUser = gson.fromJson(respJson, User.class);
+                resultActivity = gson.fromJson(respJson, UserActivity.class);
             } else {
-                this.taskException = gson.fromJson(respJson, JsonException.class);
+                this.lastException = gson.fromJson(respJson, JsonException.class);
             }
         }catch(Exception ex)
         {
-            this.taskException = new AsyncTaskException(ex);
+            this.lastException = new AsyncTaskException(ex);
         }
 
-        return updatedUser;
+        return resultActivity;
     }
 
     @Override
-    protected void onPostExecute(User user) {
-        super.onPostExecute(user);
+    protected void onPostExecute(UserActivity userActivity) {
+        super.onPostExecute(userActivity);
 
-        if(this.taskException == null)
+        if(this.lastException == null && userActivity != null)
         {
-            this.callback.afterRegistrationSuccessful(user);
+            this.callback.onAfterUserActivityModified(userActivity);
+        } else if(this.lastException != null)
+        {
+            Log.e("TaskError", lastException.toString());
+            this.callback.onAfterUserActivityModifiedException(this.lastException);
         } else {
-            Log.e("TaskException", this.taskException.toString());
-            this.callback.afterRegistrationFailed(taskException);
+            Log.wtf("UNEXPECTED", "No exception, no result. WTF");
         }
     }
 }
