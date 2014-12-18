@@ -67,6 +67,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ActivitiesService.svc" />
     <Content Include="AuthenticationService.svc" />
     <Content Include="PlanService.svc" />
     <Content Include="UserActivitiesService.svc" />
@@ -75,6 +76,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActivitiesService.svc.cs">
+      <DependentUpon>ActivitiesService.svc</DependentUpon>
+    </Compile>
     <Compile Include="AuthenticationService.svc.cs">
       <DependentUpon>AuthenticationService.svc</DependentUpon>
     </Compile>
@@ -84,9 +88,10 @@
     <Compile Include="ErrorHandler\JsonErrorHandler.cs" />
     <Compile Include="Helpers\AuthenticationHelper.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
+    <Compile Include="IActivitiesService.cs" />
     <Compile Include="IAuthenticationService.cs" />
     <Compile Include="IPlanService.cs" />
-    <Compile Include="IUserActivites.cs" />
+    <Compile Include="IUserActivitesService.cs" />
     <Compile Include="PlanService.svc.cs">
       <DependentUpon>PlanService.svc</DependentUpon>
     </Compile>

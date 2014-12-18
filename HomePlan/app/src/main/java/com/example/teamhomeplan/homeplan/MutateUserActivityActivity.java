@@ -67,6 +67,7 @@ public class MutateUserActivityActivity extends ActionBarActivity implements Mod
             if(!Utilities.tryParseInt(iconTypeInput))
             {
                 errorLabel.setText("Icon was not a valid number");
+                busyLoader.setVisibility(View.GONE);
                 return;
             } else {
                 iconTypeInteger = Integer.parseInt(iconTypeInput);
@@ -76,6 +77,7 @@ public class MutateUserActivityActivity extends ActionBarActivity implements Mod
             if(iconType == null)
             {
                 errorLabel.setText("Icon type was not part of the enumeration.");
+                busyLoader.setVisibility(View.GONE);
                 return;
             }
 

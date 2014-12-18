@@ -31,7 +31,7 @@ import java.io.ByteArrayOutputStream;
  * Task for adding or modifying a user activity.
  */
 public class ModifyUserActivityTask extends AsyncTask<Void, Void, UserActivity> {
-    private final static String requestUrl = Constants.webservicebase + "UserActivitiersService.svc/Mutate";
+    private final static String requestUrl = Constants.webservicebase + "ActivitiesService.svc/Mutate";
 
     private final UserActivity userActivityToUpdate;
     private final ModifiedUserActivityCallback callback;
@@ -75,7 +75,12 @@ public class ModifyUserActivityTask extends AsyncTask<Void, Void, UserActivity> 
             {
                 resultActivity = gson.fromJson(respJson, UserActivity.class);
             } else {
-                this.lastException = gson.fromJson(respJson, JsonException.class);
+                if(respJson.equals(""))
+                {
+                    this.lastException = new AsyncTaskException(new Exception("An unexpected error occurred"));
+                } else {
+                    this.lastException = gson.fromJson(respJson, JsonException.class);
+                }
             }
         }catch(Exception ex)
         {
