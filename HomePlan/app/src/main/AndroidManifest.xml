@@ -57,7 +57,7 @@
             android:label="@string/title_activity_mutate_user" >
         </activity>
         <activity
-            android:name=".tasks.CreateNewTaskActivity"
+            android:name=".tasks.CreateNewTaskTask"
             android:label="@string/title_activity_create_new_task">
         </activity>
     </application>
