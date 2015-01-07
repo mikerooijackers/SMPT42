@@ -77,9 +77,6 @@ public class CreateNewUserTaskActivity extends Activity implements CreateTaskCal
 
     @Override
     public void afterCreateTaskSuccessful(UserActivity activity) {
-        Intent resultIntent = new Intent();
-        resultIntent.putExtra("Activity", activity);
-        this.setResult(1, resultIntent);
         this.finish();
     }
 
