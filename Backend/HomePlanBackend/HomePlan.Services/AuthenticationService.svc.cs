@@ -52,7 +52,7 @@ namespace HomePlan.Services
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception("An unkown error occured.");
+                    throw new Exception("An unkown error occurred.");
                 }
 
                 return newUser.ToUserDto();
