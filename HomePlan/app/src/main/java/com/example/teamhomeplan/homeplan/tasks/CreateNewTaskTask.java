@@ -9,6 +9,7 @@ import com.example.teamhomeplan.homeplan.exception.JsonException;
 import com.example.teamhomeplan.homeplan.exception.ServiceException;
 import com.example.teamhomeplan.homeplan.helper.Constants;
 import com.example.teamhomeplan.homeplan.helper.GsonFactory;
+import com.example.teamhomeplan.homeplan.helper.Session;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -54,6 +55,7 @@ public class CreateNewTaskTask extends AsyncTask<Void, Void, UserActivity> {
             JsonObject rootObject = new JsonObject();
             JsonElement jsonElement = gson.toJsonTree(this.userActivity);
             rootObject.add("activity", jsonElement);
+            rootObject.add("userId", gson.toJsonTree(Session.authenticatedUser.getUserId()));
 
             HttpPost post = new HttpPost(requestURL);
             String s = rootObject.toString();
