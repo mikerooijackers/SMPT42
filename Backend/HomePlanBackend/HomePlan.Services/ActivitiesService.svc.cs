@@ -8,6 +8,7 @@ using System.Text;
 using HomePlan.Entities;
 using HomePlan.Services.Helpers;
 using HomePlan.Shared.DTO;
+using HomePlan.Entities;
 
 namespace HomePlan.Services
 {
@@ -52,6 +53,39 @@ namespace HomePlan.Services
             }
         }
 
+        public UserActivityDto CreateTask(UserActivityDto activity)
+        {
+            using (var entities = new HomePlanEntities())
+            {
+                if (entities.UserActivities.Any(ua => ua.Name == activity.Name))
+                {
+                    throw new Exception("A task with this name already exists.");
+                }
+
+                Entities.UserActivity newActivity = new Entities.UserActivity()
+                {
+                    IconType = activity.IconType,
+                    PlannedDuration = activity.PlannedDurationMilliseconds,
+                    Name = activity.Name,
+                    UserID = activity.UserId,
+                    UserActivityID = Guid.NewGuid()
+                };
+
+                entities.UserActivities.Add(newActivity);
+
+                try
+                {
+                    entities.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("An unknown error occurred.");
+                }
+
+                return newActivity.ToUserActivityDto();
+            }
+        }
+
         public UserActivityDto Mutate(UserDto user, UserActivityDto userActivity)
         {
             using (var entities = new HomePlanEntities())
@@ -87,7 +121,6 @@ namespace HomePlan.Services
                 return userActivityToUpdate.ToUserActivityDto();
             }
         }
-
 
         public bool RemoveUserActivity(UserDto user, Guid userActivityId)
         {
