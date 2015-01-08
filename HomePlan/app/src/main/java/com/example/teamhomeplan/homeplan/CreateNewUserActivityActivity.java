@@ -12,7 +12,7 @@ import com.example.teamhomeplan.homeplan.callback.CreateTaskCallback;
 import com.example.teamhomeplan.homeplan.domain.UserActivity;
 import com.example.teamhomeplan.homeplan.enumerations.UserActivityIconType;
 import com.example.teamhomeplan.homeplan.exception.ServiceException;
-import com.example.teamhomeplan.homeplan.tasks.CreateNewActivityTask;
+import com.example.teamhomeplan.homeplan.tasks.CreateNewUserActivityTask;
 import java.util.UUID;
 
 /**
@@ -69,7 +69,7 @@ public class CreateNewUserActivityActivity extends Activity implements CreateTas
             newUserActivity.setIconType(UserActivityIconType.DOG);
             newUserActivity.setUserId(userId);
 
-            CreateNewActivityTask createNewTask = new CreateNewActivityTask(CreateNewUserActivityActivity.this, newUserActivity);
+            CreateNewUserActivityTask createNewTask = new CreateNewUserActivityTask(CreateNewUserActivityActivity.this, newUserActivity);
             createNewTask.execute();
         }
     };
