@@ -12,14 +12,13 @@ import com.example.teamhomeplan.homeplan.callback.CreateTaskCallback;
 import com.example.teamhomeplan.homeplan.domain.UserActivity;
 import com.example.teamhomeplan.homeplan.enumerations.UserActivityIconType;
 import com.example.teamhomeplan.homeplan.exception.ServiceException;
-import com.example.teamhomeplan.homeplan.tasks.CreateNewTaskTask;
-
+import com.example.teamhomeplan.homeplan.tasks.CreateNewActivityTask;
 import java.util.UUID;
 
 /**
  * Created by Edwin on 07-Jan-15.
  */
-public class CreateNewUserTaskActivity extends Activity implements CreateTaskCallback {
+public class CreateNewUserActivityActivity extends Activity implements CreateTaskCallback {
 
     private UUID userId;
     private Context context = this;
@@ -52,7 +51,7 @@ public class CreateNewUserTaskActivity extends Activity implements CreateTaskCal
             int hour = ((TimePicker) findViewById(R.id.tp_activityDuration)).getCurrentHour();
             int minute = ((TimePicker) findViewById(R.id.tp_activityDuration)).getCurrentMinute();
 
-            long duration = new Long(hour) + new Long(minute);
+            long duration = hour + minute;
 
             if (activityName.equals("")) {
                 Toast.makeText(context, "Please enter your name", Toast.LENGTH_SHORT).show();
@@ -70,7 +69,7 @@ public class CreateNewUserTaskActivity extends Activity implements CreateTaskCal
             newUserActivity.setIconType(UserActivityIconType.DOG);
             newUserActivity.setUserId(userId);
 
-            CreateNewTaskTask createNewTask = new CreateNewTaskTask(CreateNewUserTaskActivity.this, newUserActivity);
+            CreateNewActivityTask createNewTask = new CreateNewActivityTask(CreateNewUserActivityActivity.this, newUserActivity);
             createNewTask.execute();
         }
     };

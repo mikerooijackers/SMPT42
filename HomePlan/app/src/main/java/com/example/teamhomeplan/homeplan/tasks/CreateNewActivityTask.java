@@ -25,14 +25,14 @@ import java.io.ByteArrayOutputStream;
 /**
  * Created by Edwin on 06-Jan-15.
  */
-public class CreateNewTaskTask extends AsyncTask<Void, Void, UserActivity> {
+public class CreateNewActivityTask extends AsyncTask<Void, Void, UserActivity> {
 
     private ServiceException serviceException;
     private CreateTaskCallback createTaskCallback;
     private UserActivity userActivity;
-    private CreateNewTaskTask context = this;
+    private CreateNewActivityTask context = this;
 
-    public CreateNewTaskTask(CreateTaskCallback callback, UserActivity activity) {
+    public CreateNewActivityTask(CreateTaskCallback callback, UserActivity activity) {
         if (createTaskCallback == null)
             throw new IllegalArgumentException("callback");
         if (userActivity == null)
@@ -45,7 +45,7 @@ public class CreateNewTaskTask extends AsyncTask<Void, Void, UserActivity> {
 
     @Override
     protected UserActivity doInBackground(Void... params) {
-        String requestURL = Constants.webservicebase + "AuthenticationService.svc/CreateTask";
+        String requestURL = Constants.webservicebase + "AuthenticationService.svc/CreateActivity";
 
         UserActivity activity = null;
 
