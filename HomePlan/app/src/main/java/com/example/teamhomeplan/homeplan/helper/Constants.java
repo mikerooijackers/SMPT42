@@ -6,5 +6,5 @@ package com.example.teamhomeplan.homeplan.helper;
  * Class containing application wide constants.
  */
 public class Constants {
-    public static final String webservicebase = "http://172.16.134.129/HomePlan/";
+    public static final String webservicebase = "http://192.168.1.182/HomePlan/";
 }
