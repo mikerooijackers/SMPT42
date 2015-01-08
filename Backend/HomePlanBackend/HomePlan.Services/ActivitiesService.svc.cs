@@ -53,7 +53,7 @@ namespace HomePlan.Services
             }
         }
 
-        public UserActivityDto CreateTask(UserActivityDto activity)
+        public UserActivityDto CreateActivity(UserActivityDto activity)
         {
             using (var entities = new HomePlanEntities())
             {
