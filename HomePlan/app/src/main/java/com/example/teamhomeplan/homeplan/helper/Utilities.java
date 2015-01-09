@@ -1,13 +1,12 @@
 package com.example.teamhomeplan.homeplan.helper;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.AudioManager;
 import android.util.Base64;
 
 import com.example.teamhomeplan.homeplan.domain.User;
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-
 import java.io.ByteArrayOutputStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -98,5 +97,25 @@ public class Utilities {
         }
     }
 
+    /**
+     * Set the ringer mode for the phone
+     * @param context
+     */
+    public static void setSilentMode(Context context) {
+        AudioManager am;
+        am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+        am.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+    }
+
+    /**
+     * Get the current ringer mode of the phone
+     * @param context
+     * @return the current ringer mode
+     */
+    public static int getRingerMode(Context context) {
+        AudioManager am;
+        am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+        return am.getRingerMode();
+    }
 
 }
