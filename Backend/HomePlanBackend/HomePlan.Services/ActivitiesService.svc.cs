@@ -65,7 +65,7 @@ namespace HomePlan.Services
                 Entities.UserActivity newActivity = new Entities.UserActivity()
                 {
                     IconType = activity.IconType,
-                    PlannedDuration = activity.PlannedDurationMilliseconds,
+                    PlannedDuration = TimeSpan.FromMilliseconds(activity.PlannedDurationMilliseconds),
                     Name = activity.Name,
                     UserID = activity.UserId,
                     UserActivityID = Guid.NewGuid()

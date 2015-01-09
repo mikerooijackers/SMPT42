@@ -17,7 +17,11 @@ namespace HomePlan.Services
         public UserDto Authenticate(UserDto user)
         {
             var authenticatedUser = Helpers.AuthenticationHelper.Authenticate(user);
-            return authenticatedUser != null ? authenticatedUser.ToUserDto() : null;
+            if(authenticatedUser != null)
+            {
+                return authenticatedUser.ToUserDto();
+            }
+            throw new Exception("Gebruiker bestaat niet");
         }
 
         public UserDto Register(UserDto user, string profileImage)
