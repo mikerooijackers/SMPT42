@@ -24,7 +24,7 @@
         <Button
             android:layout_width="137dp"
             android:layout_height="wrap_content"
-            android:text="Change Avatar"
+            android:text="@string/change_avatar"
             android:id="@+id/profile_change_avatar"
             android:layout_gravity="center_horizontal"
             android:background="@color/buttonbackground"
@@ -35,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Name"
+        android:text="@string/name"
         android:id="@+id/textView6"
         android:layout_below="@+id/linearLayout2"
         android:layout_alignParentStart="true"
@@ -54,7 +54,7 @@
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Save changes"
+        android:text="@string/save_changes"
         android:id="@+id/btn_profile_saveChanges"
         android:layout_below="@+id/txt_Profile_Name"
         android:layout_centerHorizontal="true"

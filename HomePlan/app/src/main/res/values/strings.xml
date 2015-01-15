@@ -9,10 +9,20 @@
     <string name="title_activity_home_profile">HomeProfileActivity</string>
     <string name="title_activity_profile">ProfileActivity</string>
     <string name="title_activity_mutate_user">MutateUserActivityActivity</string>
-    <string name="title_activity_create_new_task">Create new task</string>
+    <string name="title_activity_create_new_task">Maak nieuwe taak</string>
 
-    <string name="activity_name_text">Activity name</string>
-    <string name="activity_duration_text">Activity duration</string>
-    <string name="save_button_text">Save</string>
-
+    <string name="activity_name_text">Naam activiteit</string>
+    <string name="activity_duration_text">Duur activiteit</string>
+    <string name="save_button_text">Opslaan</string>
+    <string name="add_user_activity">Voeg activiteit toe</string>
+    <string name="email">Email</string>
+    <string name="login">Log in</string>
+    <string name="register">Registreer</string>
+    <string name="activity_icon">Icoon activiteit</string>
+    <string name="change_avatar">Verandering profielfoto</string>
+    <string name="name">Naam</string>
+    <string name="save_changes">Wijzigingen opslaan</string>
+    <string name="password">Wachtwoord</string>
+    <string name="confirm_password">Bevestig wachtwoord</string>
+    <string name="choose_avatar">Kies profielfoto</string>
 </resources>
