@@ -3,10 +3,14 @@ package com.example.teamhomeplan.homeplan.helper;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.util.Base64;
 
+import com.example.teamhomeplan.homeplan.R;
 import com.example.teamhomeplan.homeplan.domain.User;
+import com.example.teamhomeplan.homeplan.enumerations.UserActivityIconType;
+
 import java.io.ByteArrayOutputStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -118,4 +122,9 @@ public class Utilities {
         return am.getRingerMode();
     }
 
+    public static Drawable getUserActivityIcon(Context context,
+                                               UserActivityIconType iconType) {
+        //TODO: implement
+        return context.getResources().getDrawable(R.drawable.logo);
+    }
 }

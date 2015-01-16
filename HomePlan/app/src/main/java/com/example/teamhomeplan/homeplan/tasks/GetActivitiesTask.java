@@ -2,6 +2,7 @@ package com.example.teamhomeplan.homeplan.tasks;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
 
 import com.example.teamhomeplan.homeplan.exception.ServiceException;
 import com.example.teamhomeplan.homeplan.callback.UserActivitiesLoadedCallback;
@@ -46,7 +47,7 @@ public class GetActivitiesTask extends AsyncTask<Void, Void, List<UserActivity>>
 
     @Override
     protected List<UserActivity> doInBackground(Void... params) {
-        String requestUrl = Constants.webservicebase + "UserActivities.svc/GetUserActivities";
+        String requestUrl = Constants.webservicebase + "ActivitiesService.svc/GetUserActivities";
 
         HttpClient httpClient = new DefaultHttpClient();
 
@@ -60,7 +61,7 @@ public class GetActivitiesTask extends AsyncTask<Void, Void, List<UserActivity>>
 
             String json = gson.toJson(Session.authenticatedUser, User.class);
             HttpPost post = new HttpPost(requestUrl);
-            StringEntity se = new StringEntity(json, "HTTP.UTF-8");
+            StringEntity se = new StringEntity(json, "UTF-8");
             se.setContentType("application/json");
 
             post.setEntity(se);

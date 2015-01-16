@@ -11,10 +11,9 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/add_user_activity"
-        android:id="@+id/homeprofile_btnAddActivity"
+        android:id="@+id/homeprofile_btnViewActivities"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:background="@color/buttonbackground"
-        android:textColor="@color/text" />
+        style="@style/buttonStyle" />
 
 </RelativeLayout>

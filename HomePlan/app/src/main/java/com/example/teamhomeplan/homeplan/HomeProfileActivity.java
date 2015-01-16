@@ -26,18 +26,19 @@ public class HomeProfileActivity extends ActionBarActivity {
 
         setTitle("Home plan");
 
-        Button onAddUserActivity = (Button) findViewById(R.id.homeprofile_btnAddActivity);
-        onAddUserActivity.setOnClickListener(onAddUserActivityClick);
+        Button onAddUserActivity = (Button) findViewById(R.id.homeprofile_btnViewActivities);
+        onAddUserActivity.setOnClickListener(onViewUserActivitiesClick);
     }
 
 
-    private View.OnClickListener onAddUserActivityClick = new View.OnClickListener() {
+    private View.OnClickListener onViewUserActivitiesClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(HomeProfileActivity.this, MutateUserActivityActivity.class);
+            Intent intent = new Intent(HomeProfileActivity.this, UserActivitiesOverviewActivity.class);
             startActivity(intent);
         }
     };
+
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_home_profile, menu);

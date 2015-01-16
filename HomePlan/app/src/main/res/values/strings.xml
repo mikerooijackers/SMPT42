@@ -14,7 +14,7 @@
     <string name="activity_name_text">Naam activiteit</string>
     <string name="activity_duration_text">Duur activiteit</string>
     <string name="save_button_text">Opslaan</string>
-    <string name="add_user_activity">Voeg activiteit toe</string>
+    <string name="add_user_activity">Bekijk activiteiten</string>
     <string name="email">Email</string>
     <string name="login">Log in</string>
     <string name="register">Registreer</string>
@@ -25,4 +25,5 @@
     <string name="password">Wachtwoord</string>
     <string name="confirm_password">Bevestig wachtwoord</string>
     <string name="choose_avatar">Kies profielfoto</string>
+    <string name="add_new_activity_text">Voeg nieuwe activiteit toe</string>
 </resources>

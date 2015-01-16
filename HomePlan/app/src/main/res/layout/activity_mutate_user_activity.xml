@@ -67,6 +67,8 @@
         android:timePickerMode="spinner"
         android:id="@+id/useractivitymutate_timepicker"
         android:layout_below="@+id/textView8"
+        android:numbersTextColor="@color/text"
+        android:amPmTextColor="@color/text"
         android:layout_alignParentStart="true" />
 
     <Button

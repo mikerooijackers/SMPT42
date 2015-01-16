@@ -42,7 +42,7 @@ public class ProfileActivity extends ActionBarActivity implements ImageDownloade
         setTitle("Your profile");
         setContentView(R.layout.activity_profile);
 
-        String avatarUrl = Utilities.getAvatarUrl(Session.authenticatedUser);
+            String avatarUrl = Utilities.getAvatarUrl(Session.authenticatedUser);
         ImageView avatarImage = (ImageView) findViewById(R.id.img_Profile);
         if ((avatarUrl != null) && !avatarUrl.equals("")) {
             DownloadImageTask imgService = new DownloadImageTask(this, avatarUrl);
