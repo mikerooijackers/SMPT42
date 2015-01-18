@@ -23,6 +23,7 @@ import java.util.List;
  */
 public class UserActivitiesOverviewActivity extends Activity implements UserActivitiesLoadedCallback {
     private View loaderIcon;
+    private ActivityListAdapter listAdapter;
 
     @Override
     protected void onResume() {
@@ -60,19 +61,17 @@ public class UserActivitiesOverviewActivity extends Activity implements UserActi
     };
 
     public void onUserActivitiesLoaded(List<UserActivity> userActivitiesLoaded) {
-        //TODO: show them in listview.
-
         loaderIcon.setVisibility(View.GONE);
 
         ListView userActivitiesListView = (ListView) findViewById(R.id.listview_useractivies);
-
-        ActivityListAdapter activityListAdapter = new ActivityListAdapter(this,userActivitiesLoaded);
-        userActivitiesListView.setAdapter(activityListAdapter);
+        listAdapter = new ActivityListAdapter(this,userActivitiesLoaded);
+        userActivitiesListView.setAdapter(listAdapter);
     }
 
     @Override
     public void onUserActivitiesLoadedException(ServiceException ex) {
         //TODO: Show a loading error.
         loaderIcon.setVisibility(View.GONE);
-    }
+      }
+
 }

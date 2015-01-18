@@ -26,4 +26,9 @@
         <item name="android:textColor">@color/text</item>
     </style>
 
+    <style name="subleTextStyle" parent="android:style/Widget.TextView">
+        <item name="android:textColor">@color/subtleText</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
 </resources>

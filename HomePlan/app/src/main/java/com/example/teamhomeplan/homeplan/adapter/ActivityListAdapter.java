@@ -17,7 +17,7 @@ import java.util.List;
 
 /**
  * Created by Niek on 15/01/15.
- *
+ * <p/>
  * ListAdapter for a list of useractivities.
  */
 public class ActivityListAdapter extends ArrayAdapter<UserActivity> {
@@ -28,13 +28,11 @@ public class ActivityListAdapter extends ArrayAdapter<UserActivity> {
     public ActivityListAdapter(Activity context, List<UserActivity> userActivityList) {
         super(context, R.layout.listitem_useractivity, userActivityList);
 
-        if(context == null)
-        {
+        if (context == null) {
             throw new IllegalArgumentException("contxt");
         }
 
-        if(userActivityList == null)
-        {
+        if (userActivityList == null) {
             throw new IllegalArgumentException("userActivityList");
         }
 
@@ -47,8 +45,7 @@ public class ActivityListAdapter extends ArrayAdapter<UserActivity> {
     public View getView(int position, View convertView, ViewGroup parent) {
         View returnView = convertView;
 
-        if(returnView == null)
-        {
+        if (returnView == null) {
             LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             returnView = inflater.inflate(R.layout.listitem_useractivity, null);
         }
@@ -56,7 +53,9 @@ public class ActivityListAdapter extends ArrayAdapter<UserActivity> {
         UserActivity userActivity = userActivities.get(position);
         TextView userActivityName = (TextView) returnView.findViewById(R.id.list_item_activity_name);
         ImageView userActivityIcon = (ImageView) returnView.findViewById(R.id.listitem_useractivity_icon);
+        TextView userActivityDuration = (TextView) returnView.findViewById(R.id.listitem_useractivity_duration);
 
+        userActivityDuration.setText(userActivity.getPlannedDurationText());
         userActivityName.setText(userActivity.getName());
         userActivityIcon.setImageDrawable(Utilities.getUserActivityIcon(getContext(), userActivity.getIconType()));
 

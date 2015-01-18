@@ -18,13 +18,21 @@ namespace HomePlan.Services
     {
         public List<UserActivityDto> GetUserActivities(UserDto user)
         {
+            List<UserActivityDto> returnedAcitivies = new List<UserActivityDto>();
             using (var entities = new HomePlanEntities())
             {
                 var authenticatedUser = AuthenticationHelper.Authenticate(user, entities);
 
-                return
-                    entities.UserActivities.Where(ua => ua.UserID == authenticatedUser.UserID && ua.DeletedValue == null)
-                        .Select(ua => ua.ToUserActivityDto()).ToList();
+                List<UserActivity> entityActivities = 
+                    entities.UserActivities.Where(ua => ua.UserID == authenticatedUser.UserID
+                        && ua.DeletedValue == null).ToList();
+
+                foreach(UserActivity ea in entityActivities)
+                {
+                    returnedAcitivies.Add(ea.ToUserActivityDto());
+                }
+
+                return returnedAcitivies;
             }
         }
 

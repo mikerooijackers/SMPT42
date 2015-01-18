@@ -14,6 +14,8 @@ import com.example.teamhomeplan.homeplan.helper.Constants;
 import com.example.teamhomeplan.homeplan.helper.GsonFactory;
 import com.example.teamhomeplan.homeplan.helper.Session;
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
 import org.apache.http.HttpResponse;
@@ -23,6 +25,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.lang.reflect.Type;
@@ -59,9 +62,12 @@ public class GetActivitiesTask extends AsyncTask<Void, Void, List<UserActivity>>
         try {
             Gson gson = GsonFactory.createGson();
 
-            String json = gson.toJson(Session.authenticatedUser, User.class);
+            JsonObject rootJson = new JsonObject();
+            JsonElement userElement = gson.toJsonTree(Session.authenticatedUser);
+            rootJson.add("user", userElement);
+
             HttpPost post = new HttpPost(requestUrl);
-            StringEntity se = new StringEntity(json, "UTF-8");
+            StringEntity se = new StringEntity(rootJson.toString(), "UTF-8");
             se.setContentType("application/json");
 
             post.setEntity(se);

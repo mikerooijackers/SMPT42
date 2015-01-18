@@ -4,4 +4,5 @@
     <color name="background">#5d6061</color>
     <color name="buttonbackground">#e65e52</color>
     <color name="borders">#f0f4f5</color>
+    <color name="subtleText">#ffafafaf</color>
 </resources>

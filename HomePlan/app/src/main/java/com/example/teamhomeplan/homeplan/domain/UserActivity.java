@@ -2,6 +2,9 @@ package com.example.teamhomeplan.homeplan.domain;
 
 import com.example.teamhomeplan.homeplan.enumerations.UserActivityIconType;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.UUID;
 import com.google.gson.annotations.SerializedName;
 
@@ -65,5 +68,12 @@ public class UserActivity {
 
     public void setPlannedDuration(long plannedDuration) {
         this.plannedDuration = plannedDuration;
+    }
+
+    public String getPlannedDurationText()
+    {
+        Date date = new Date(this.plannedDuration);
+        DateFormat dateFormat = new SimpleDateFormat("HH:mm");
+        return dateFormat.format(date);
     }
 }
