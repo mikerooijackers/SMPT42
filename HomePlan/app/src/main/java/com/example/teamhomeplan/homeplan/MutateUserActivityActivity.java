@@ -86,7 +86,7 @@ public class MutateUserActivityActivity extends ActionBarActivity implements Mod
 
             UserActivity userActivityToMutate = new UserActivity();
             userActivityToMutate.setIconType(iconType);
-            userActivityToMutate.setUserId(editingUserActivityID);
+            userActivityToMutate.setUserId(editingUserActivityID.toString());
             userActivityToMutate.setName(activityName);
             userActivityToMutate.setPlannedDuration(timeMilliseconds);
 

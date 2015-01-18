@@ -108,7 +108,7 @@ public class RegisterActivity extends Activity implements RegistrationCallback {
             }
 
             if (!passConfirm.equals(password)) {
-                errorLabel.setText("Your passwords don't match.");
+                errorLabel.setText("Your passwords n't match.");
                 return;
             }
             if (!Utilities.isEmailValid(email)) {

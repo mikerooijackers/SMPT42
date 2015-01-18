@@ -1,19 +1,76 @@
 package com.example.teamhomeplan.homeplan;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ListView;
 
+import com.example.teamhomeplan.homeplan.adapter.ActivityListAdapter;
+import com.example.teamhomeplan.homeplan.domain.UserActivity;
+import com.example.teamhomeplan.homeplan.helper.Constants;
 
+import java.util.ArrayList;
+
+/**
+ * Created by Niek on 18-1-2015
+ *
+ * Activity for the planning generator.
+ */
 public class PlanningGeneratorActivity extends ActionBarActivity {
+
+    private ActivityListAdapter activityListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_planning_generator);
+
+        Button manageActivitiesButton = (Button) findViewById(R.id.planning_generator_manage_activities);
+        manageActivitiesButton.setOnClickListener(onSelectUserActivitesClicked);
     }
 
+
+    /**
+     * Called when the activity for selecting user activities is finished.
+     *
+     * @param requestCode the code we requested a result for
+     * @param resultCode  the received resultcode
+     * @param data        the resulting intent containing the data.
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == resultCode) {
+            switch (requestCode) {
+                case 1:
+                    ListView selectedActivitiesListView = (ListView) findViewById(R.id.planning_generator_selected_activities);
+
+                    ArrayList<UserActivity> selectedActivities = data.getParcelableArrayListExtra(Constants.SELECTED_USERACTIVITIES);
+                    ActivityListAdapter listAdapter = new ActivityListAdapter(this, selectedActivities);
+
+                    selectedActivitiesListView.setAdapter(listAdapter);
+
+                    activityListAdapter = listAdapter;
+                    break;
+            }
+        }
+    }
+
+    /**
+     * Show the activity for selecting user activities.
+     */
+    private View.OnClickListener onSelectUserActivitesClicked = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(PlanningGeneratorActivity.this, SelectUserActivitiesActivity.class);
+            startActivityForResult(intent, 1);
+        }
+    };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

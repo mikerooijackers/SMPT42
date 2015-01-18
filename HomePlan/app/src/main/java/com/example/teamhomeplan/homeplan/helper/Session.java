@@ -6,6 +6,10 @@ import android.content.Intent;
 import com.example.teamhomeplan.homeplan.LoginActivity;
 import com.example.teamhomeplan.homeplan.MainActivity;
 import com.example.teamhomeplan.homeplan.domain.User;
+import com.example.teamhomeplan.homeplan.domain.UserActivity;
+
+import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by Niek on 12/12/14.
@@ -16,6 +20,31 @@ public class Session {
 
     //TODO: Make this nicer.
     public static User authenticatedUser;
+
+    //List of all the user activities that are loaded.
+    public static List<UserActivity> loadedUserActivities;
+
+    public static UserActivity getUserActivity(String userActivityID)
+    {
+        if(userActivityID == null)
+        {
+            throw new IllegalArgumentException("UserActivityID");
+        }
+
+        UserActivity foundUserActivity = null;
+
+        if(loadedUserActivities !=  null) {
+            for (UserActivity ua : loadedUserActivities) {
+                if(ua.getUserActivityId().equals(userActivityID))
+                {
+                    foundUserActivity = ua;
+                    break;
+                }
+            }
+        }
+
+        return foundUserActivity;
+    }
 
     /**
      * Check if the user of the application is authenticated

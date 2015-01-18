@@ -3,7 +3,9 @@ package com.example.teamhomeplan.homeplan;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -66,7 +68,28 @@ public class UserActivitiesOverviewActivity extends Activity implements UserActi
         ListView userActivitiesListView = (ListView) findViewById(R.id.listview_useractivies);
         listAdapter = new ActivityListAdapter(this,userActivitiesLoaded);
         userActivitiesListView.setAdapter(listAdapter);
+        userActivitiesListView.setOnItemClickListener(onListViewItemClicked);
     }
+
+
+    private AdapterView.OnItemClickListener onListViewItemClicked = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            ActivityListAdapter adapter = (ActivityListAdapter) parent.getAdapter();
+
+            UserActivity activity = adapter.getItem(position);
+
+            if(activity == null)
+            {
+                Log.e("ActivityNull", "User activity that was clicked was null");
+                return;
+            }
+
+            Intent intent = new Intent(UserActivitiesOverviewActivity.this, MutateUserActivityActivity.class);
+            intent.putExtra("activityid", activity.getUserActivityId());
+            startActivity(intent);
+        }
+    };
 
     @Override
     public void onUserActivitiesLoadedException(ServiceException ex) {

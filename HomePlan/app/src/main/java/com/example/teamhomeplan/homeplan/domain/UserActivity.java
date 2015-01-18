@@ -1,5 +1,8 @@
 package com.example.teamhomeplan.homeplan.domain;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.example.teamhomeplan.homeplan.enumerations.UserActivityIconType;
 
 import java.text.DateFormat;
@@ -13,13 +16,13 @@ import com.google.gson.annotations.SerializedName;
  *
  * UserActivity object as received by the service.
  */
-public class UserActivity {
+public class UserActivity implements Parcelable {
 
     @SerializedName("UserActivityID")
-    private UUID userActivityId;
+    private String userActivityId;
 
     @SerializedName("UserID")
-    private UUID userId;
+    private String userId;
 
     @SerializedName("Name")
     private String name;
@@ -30,19 +33,34 @@ public class UserActivity {
     @SerializedName("PlannedDurationMilliseconds")
     private long plannedDuration; //Planned duration in milliseconds
 
-    public UUID getUserActivityId() {
+    public UserActivity()
+    {
+
+    }
+
+    protected UserActivity(Parcel in)
+    {
+        userActivityId = in.readString();
+        userId = in.readString();
+        name = in.readString();
+        iconType = (UserActivityIconType) in.readSerializable();
+        plannedDuration = in.readLong();
+
+    }
+
+    public String getUserActivityId() {
         return userActivityId;
     }
 
-    public void setUserActivityId(UUID userActivityId) {
+    public void setUserActivityId(String userActivityId) {
         this.userActivityId = userActivityId;
     }
 
-    public UUID getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(UUID userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
@@ -77,4 +95,31 @@ public class UserActivity {
 
         return String.format("%02d:%02d", hour, minute);
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(userActivityId);
+        dest.writeString(userId);
+        dest.writeString(name);
+        dest.writeSerializable(iconType);
+        dest.writeLong(plannedDuration);
+    }
+
+    public static final Parcelable.Creator<UserActivity> CREATOR = new Parcelable.Creator<UserActivity>() {
+        @Override
+        public UserActivity createFromParcel(Parcel in) {
+            return new UserActivity(in);
+        }
+
+        @Override
+        public UserActivity[] newArray(int size) {
+            return new UserActivity[size];
+        }
+    };
+
 }

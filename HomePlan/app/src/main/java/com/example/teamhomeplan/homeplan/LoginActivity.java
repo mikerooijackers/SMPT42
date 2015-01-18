@@ -25,7 +25,7 @@ public class LoginActivity extends Activity implements AuthenticateCallback {
 
     private LoginActivity context;
     private final int REQUEST_CODE = 1;
-    private RelativeLayout loader   ;
+    private RelativeLayout loader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

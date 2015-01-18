@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -25,20 +26,20 @@ public class ActivityListAdapter extends ArrayAdapter<UserActivity> {
     private Activity context;
     private List<UserActivity> userActivities;
 
-    public ActivityListAdapter(Activity context, List<UserActivity> userActivityList) {
+    public ActivityListAdapter(Activity context,
+                               List<UserActivity> userActivityList) {
         super(context, R.layout.listitem_useractivity, userActivityList);
-
-        if (context == null) {
-            throw new IllegalArgumentException("contxt");
-        }
 
         if (userActivityList == null) {
             throw new IllegalArgumentException("userActivityList");
         }
 
-
         this.context = context;
         userActivities = userActivityList;
+    }
+
+    public List<UserActivity> getUserActivities() {
+        return userActivities;
     }
 
     @Override

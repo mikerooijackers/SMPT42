@@ -106,6 +106,7 @@ public class GetActivitiesTask extends AsyncTask<Void, Void, List<UserActivity>>
             return;
         }
 
+        Session.loadedUserActivities = userActivities;
         this.callback.onUserActivitiesLoaded(userActivities);
     }
 }
