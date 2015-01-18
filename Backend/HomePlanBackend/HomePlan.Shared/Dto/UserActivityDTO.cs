@@ -15,6 +15,6 @@ namespace HomePlan.Shared.DTO
         public Guid UserId { get; set; }
         public string Name { get; set; }
         public UserActivityIconType? IconType { get; set; }
-        public long PlannedDurationMilliseconds { get; set; }
+        public double PlannedDurationMilliseconds { get; set; }
     }
 }

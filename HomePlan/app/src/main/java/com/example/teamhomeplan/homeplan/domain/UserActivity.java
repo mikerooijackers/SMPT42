@@ -27,7 +27,7 @@ public class UserActivity {
     @SerializedName("IconType")
     private UserActivityIconType iconType;
 
-    @SerializedName("PlannedDuration")
+    @SerializedName("PlannedDurationMilliseconds")
     private long plannedDuration; //Planned duration in milliseconds
 
     public UUID getUserActivityId() {
@@ -72,8 +72,9 @@ public class UserActivity {
 
     public String getPlannedDurationText()
     {
-        Date date = new Date(this.plannedDuration);
-        DateFormat dateFormat = new SimpleDateFormat("HH:mm");
-        return dateFormat.format(date);
+        long minute = (plannedDuration / (1000 * 60)) % 60;
+        long hour = (plannedDuration / (1000 * 60 * 60)) % 24;
+
+        return String.format("%02d:%02d", hour, minute);
     }
 }

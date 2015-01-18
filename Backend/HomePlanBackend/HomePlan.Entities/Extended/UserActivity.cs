@@ -15,7 +15,7 @@ namespace HomePlan.Entities
             return new UserActivityDto()
             {
                 IconType = this.IconType,
-                PlannedDurationMilliseconds = this.PlannedDuration.Milliseconds,
+                PlannedDurationMilliseconds = this.PlannedDuration.TotalMilliseconds,
                 Name = this.Name,
                 UserActivityId = this.UserActivityID,
                 UserId = this.UserID

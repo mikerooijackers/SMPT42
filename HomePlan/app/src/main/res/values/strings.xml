@@ -10,7 +10,6 @@
     <string name="title_activity_profile">ProfileActivity</string>
     <string name="title_activity_mutate_user">MutateUserActivityActivity</string>
     <string name="title_activity_create_new_task">Maak nieuwe taak</string>
-
     <string name="activity_name_text">Naam activiteit</string>
     <string name="activity_duration_text">Duur activiteit</string>
     <string name="save_button_text">Opslaan</string>
@@ -26,4 +25,7 @@
     <string name="confirm_password">Bevestig wachtwoord</string>
     <string name="choose_avatar">Kies profielfoto</string>
     <string name="add_new_activity_text">Voeg nieuwe activiteit toe</string>
+    <string name="title_activity_planning_generator">PlanningGeneratorActivity</string>
+    <string name="title_activity_select_user_activities">SelectUserActivitiesActivity</string>
+
 </resources>
