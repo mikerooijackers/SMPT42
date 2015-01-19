@@ -8,19 +8,28 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.example.teamhomeplan.homeplan.adapter.ActivityListAdapter;
+import com.example.teamhomeplan.homeplan.callback.PlanGenerationCallback;
+import com.example.teamhomeplan.homeplan.domain.Plan;
 import com.example.teamhomeplan.homeplan.domain.UserActivity;
+import com.example.teamhomeplan.homeplan.exception.ServiceException;
 import com.example.teamhomeplan.homeplan.helper.Constants;
+import com.example.teamhomeplan.homeplan.helper.Session;
+import com.example.teamhomeplan.homeplan.helper.Utilities;
+import com.example.teamhomeplan.homeplan.tasks.GeneratePlanTask;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Niek on 18-1-2015
- *
+ * <p/>
  * Activity for the planning generator.
  */
-public class PlanningGeneratorActivity extends ActionBarActivity {
+public class PlanningGeneratorActivity extends ActionBarActivity implements PlanGenerationCallback {
 
     private ActivityListAdapter activityListAdapter;
 
@@ -78,7 +87,19 @@ public class PlanningGeneratorActivity extends ActionBarActivity {
     private View.OnClickListener onGeneratePlanClicked = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+
             //TODO implement;
+
+            TimePicker startTimePicker = (TimePicker) findViewById(R.id.planning_generator_starttime);
+            TimePicker endTimePicker = (TimePicker) findViewById(R.id.planning_generator_endtime);
+
+            double startMillis = Utilities.getTimePickerInMilliseconds(startTimePicker);
+            double endMillis = Utilities.getTimePickerInMilliseconds(endTimePicker);
+            List<UserActivity> userActivities = activityListAdapter.getUserActivities();
+
+
+            GeneratePlanTask generatePlanTask = new GeneratePlanTask(PlanningGeneratorActivity.this, startMillis, endMillis, userActivities);
+            generatePlanTask.execute();
         }
     };
 
@@ -102,5 +123,16 @@ public class PlanningGeneratorActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void afterSuccessfulGeneration(Plan plan) {
+        //TODO: show new screen with plan.
+        Session.currentLoadedPlan = plan;
+    }
+
+    @Override
+    public void afterGenerationFailed(ServiceException se) {
+        Toast.makeText(this, se.toString(), Toast.LENGTH_LONG).show();
     }
 }

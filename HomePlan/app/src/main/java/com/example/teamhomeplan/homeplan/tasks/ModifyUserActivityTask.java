@@ -75,12 +75,12 @@ public class ModifyUserActivityTask extends AsyncTask<Void, Void, UserActivity> 
             {
                 resultActivity = gson.fromJson(respJson, UserActivity.class);
             } else {
-                if(respJson.equals(""))
-                {
-                    this.lastException = new AsyncTaskException(new Exception("An unexpected error occurred"));
-                } else {
-                    this.lastException = gson.fromJson(respJson, JsonException.class);
-                }
+                    if(respJson.equals(""))
+                    {
+                        this.lastException = new AsyncTaskException(new Exception("An unexpected error occurred"));
+                    } else {
+                        this.lastException = gson.fromJson(respJson, JsonException.class);
+                    }
             }
         }catch(Exception ex)
         {
