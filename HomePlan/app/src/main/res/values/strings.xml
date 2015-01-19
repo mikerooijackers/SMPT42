@@ -27,5 +27,6 @@
     <string name="add_new_activity_text">Voeg nieuwe activiteit toe</string>
     <string name="title_activity_planning_generator">PlanningGeneratorActivity</string>
     <string name="title_activity_select_user_activities">SelectUserActivitiesActivity</string>
+    <string name="adjust_day_length">Pas lengte van dag aan</string>
 
 </resources>
