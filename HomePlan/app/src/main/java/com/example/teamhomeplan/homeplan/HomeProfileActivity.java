@@ -32,6 +32,8 @@ public class HomeProfileActivity extends ActionBarActivity {
         Button generatePlanningButton = (Button) findViewById(R.id.homeprofile_generatePlanning);
         generatePlanningButton.setOnClickListener(generatePlanningClickedListener);
 
+        Button adjustDayLength = (Button) findViewById(R.id.btnEditDayLength);
+        adjustDayLength.setOnClickListener(adjustDayLengthListener);
     }
 
 
@@ -49,6 +51,15 @@ public class HomeProfileActivity extends ActionBarActivity {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(HomeProfileActivity.this, PlanningGeneratorActivity.class);
+            startActivity(intent);
+        }
+    };
+
+    private View.OnClickListener adjustDayLengthListener = new View.OnClickListener()
+    {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(HomeProfileActivity.this, AdjustDayLengthActivity.class);
             startActivity(intent);
         }
     };
