@@ -30,7 +30,6 @@ public class CreateNewUserActivityTask extends AsyncTask<Void, Void, UserActivit
     private ServiceException serviceException;
     private CreateTaskCallback createTaskCallback;
     private UserActivity userActivity;
-    private CreateNewUserActivityTask context = this;
 
     public CreateNewUserActivityTask(CreateTaskCallback callback, UserActivity activity) {
         if (createTaskCallback == null)
