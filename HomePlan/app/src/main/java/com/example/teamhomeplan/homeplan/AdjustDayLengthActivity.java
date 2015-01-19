@@ -9,14 +9,12 @@ import android.widget.Toast;
 import com.example.teamhomeplan.homeplan.callback.AdjustDayLengthCallback;
 import com.example.teamhomeplan.homeplan.exception.ServiceException;
 import com.example.teamhomeplan.homeplan.tasks.AdjustDayLengthTask;
-import java.util.UUID;
 
 /**
  * Created by Edwin on 17-1-2015.
  */
 public class AdjustDayLengthActivity extends Activity implements AdjustDayLengthCallback {
 
-    private UUID userId;
     private Context context = this;
 
     @Override
