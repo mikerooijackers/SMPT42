@@ -51,15 +51,17 @@ public class CreateNewUserActivityActivity extends Activity implements CreateTas
             int hour = ((TimePicker) findViewById(R.id.tp_activityDuration)).getCurrentHour();
             int minute = ((TimePicker) findViewById(R.id.tp_activityDuration)).getCurrentMinute();
 
-            long duration = hour + minute;
+            long duration;
 
             if (activityName.equals("")) {
-                Toast.makeText(context, "Please enter your name", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Please enter a name", Toast.LENGTH_SHORT).show();
                 return;
             }
             if (hour == 0 && minute == 0) {
                 Toast.makeText(context, "Please enter a greater duration", Toast.LENGTH_SHORT).show();
                 return;
+            } else {
+                duration = hour + minute;
             }
 
             UserActivity newUserActivity = new UserActivity();
@@ -81,6 +83,6 @@ public class CreateNewUserActivityActivity extends Activity implements CreateTas
 
     @Override
     public void afterCreateTaskFailed(ServiceException exception) {
-        Toast.makeText(context, "Something went wrong with creating the new activity", Toast.LENGTH_LONG).show();
+        Toast.makeText(context, "Er ging iets fout met het maken van de nieuwe activiteit", Toast.LENGTH_LONG).show();
     }
 }
