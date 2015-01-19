@@ -12,8 +12,8 @@ namespace HomePlan.Shared.DTO
     public class PlanActivityDto
     {
         public Guid PlanActivityId { get; set; }
-        public PlanActivityType Type { get; set; }
-        public long StartTimeTicks { get; set; }
-        public long EndTimeTicks { get; set; }
+        public PlanActivityType Type { get; set; } 
+        public double StartTimeMillis { get; set; }
+        public double EndTimeMillis { get; set; }
     }
 }

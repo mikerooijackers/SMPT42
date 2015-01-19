@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HomePlan.Shared.DTO;
+using HomePlan.Shared.Extensions;
 
 // ReSharper disable once CheckNamespace
 namespace HomePlan.Entities
@@ -14,8 +15,8 @@ namespace HomePlan.Entities
         {
             return new PlanActivityDto()
             {
-                EndTimeTicks = this.EndTime.Ticks,
-                StartTimeTicks = this.StartTime.Ticks,
+                EndTimeMillis = this.EndTime.TotalMilliseconds,
+                StartTimeMillis = this.StartTime.TotalMilliseconds,
                 PlanActivityId = this.PlanActivityID,
                 Type = this.Type
             };
