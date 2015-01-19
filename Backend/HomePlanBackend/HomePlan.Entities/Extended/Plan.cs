@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HomePlan.Shared.DTO;
+using HomePlan.Shared.Extensions;
 
 // ReSharper disable once CheckNamespace
 namespace HomePlan.Entities
@@ -18,8 +19,8 @@ namespace HomePlan.Entities
                 PlannedActivities =
                     this.PlanActivities.Where(p => !p.IsActual).Select(p => p.ToPlanActivityDto()).ToList(),
                 ActualActitivies = this.PlanActivities.Where(p => p.IsActual).Select(p => p.ToPlanActivityDto()).ToList(),
-                EndDateTime = this.EndDateTime,
-                StartDateTime = this.StartDateTime
+                EndDateTimeMillis = this.EndDateTime.ToMilliseconds(),
+                StartDateTimeMillis = this.StartDateTime.ToMilliseconds()
             };
         }
     }

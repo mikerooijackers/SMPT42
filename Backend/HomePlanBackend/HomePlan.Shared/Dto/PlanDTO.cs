@@ -11,8 +11,8 @@ namespace HomePlan.Shared.DTO
     public class PlanDto
     {
         public Guid PlanId { get; set; }
-        public DateTime StartDateTime { get; set; }
-        public DateTime EndDateTime { get; set; }
+        public double StartDateTimeMillis { get; set; }
+        public double EndDateTimeMillis { get; set; }
         public List<PlanActivityDto> PlannedActivities { get; set; }
         public List<PlanActivityDto> ActualActitivies { get; set; }
     }
