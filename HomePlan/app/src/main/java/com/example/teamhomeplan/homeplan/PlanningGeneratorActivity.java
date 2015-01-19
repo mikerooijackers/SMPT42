@@ -31,6 +31,9 @@ public class PlanningGeneratorActivity extends ActionBarActivity {
 
         Button manageActivitiesButton = (Button) findViewById(R.id.planning_generator_manage_activities);
         manageActivitiesButton.setOnClickListener(onSelectUserActivitesClicked);
+
+        Button generatePlanButton = (Button) findViewById(R.id.planning_generator_generate);
+        generatePlanButton.setOnClickListener(onGeneratePlanClicked);
     }
 
 
@@ -69,6 +72,13 @@ public class PlanningGeneratorActivity extends ActionBarActivity {
         public void onClick(View v) {
             Intent intent = new Intent(PlanningGeneratorActivity.this, SelectUserActivitiesActivity.class);
             startActivityForResult(intent, 1);
+        }
+    };
+
+    private View.OnClickListener onGeneratePlanClicked = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            //TODO implement;
         }
     };
 
