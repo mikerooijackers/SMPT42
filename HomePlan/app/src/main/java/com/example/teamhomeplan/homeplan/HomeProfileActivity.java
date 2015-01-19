@@ -28,6 +28,10 @@ public class HomeProfileActivity extends ActionBarActivity {
 
         Button onAddUserActivity = (Button) findViewById(R.id.homeprofile_btnViewActivities);
         onAddUserActivity.setOnClickListener(onViewUserActivitiesClick);
+
+        Button generatePlanningButton = (Button) findViewById(R.id.homeprofile_generatePlanning);
+        generatePlanningButton.setOnClickListener(generatePlanningClickedListener);
+
     }
 
 
@@ -35,6 +39,16 @@ public class HomeProfileActivity extends ActionBarActivity {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(HomeProfileActivity.this, UserActivitiesOverviewActivity.class);
+            startActivity(intent);
+        }
+    };
+
+    private View.OnClickListener generatePlanningClickedListener = new View.OnClickListener()
+    {
+
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(HomeProfileActivity.this, PlanningGeneratorActivity.class);
             startActivity(intent);
         }
     };
