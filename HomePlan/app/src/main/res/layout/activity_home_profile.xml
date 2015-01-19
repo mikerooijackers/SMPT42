@@ -10,7 +10,8 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:id="@+id/linearLayout3">
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -21,13 +22,19 @@
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="30dp"
             style="@style/buttonStyle"
             android:text="Genereer een planning"
             android:id="@+id/homeprofile_generatePlanning"/>
 
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/adjust_day_length"
+            style="@style/buttonStyle"
+            android:id="@+id/btnEditDayLength" />
+
     </LinearLayout>
-
-
 
 </RelativeLayout>
