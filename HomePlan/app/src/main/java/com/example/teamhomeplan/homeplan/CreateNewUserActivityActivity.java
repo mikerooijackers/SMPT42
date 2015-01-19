@@ -67,7 +67,7 @@ public class CreateNewUserActivityActivity extends Activity implements CreateTas
             newUserActivity.setPlannedDuration(duration);
             // TODO set proper icon type
             newUserActivity.setIconType(UserActivityIconType.DOG);
-            newUserActivity.setUserId(userId);
+            newUserActivity.setUserId(userId.toString());
 
             CreateNewUserActivityTask createNewTask = new CreateNewUserActivityTask(CreateNewUserActivityActivity.this, newUserActivity);
             createNewTask.execute();
