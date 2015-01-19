@@ -14,12 +14,20 @@ namespace HomePlan.Services
     public class PlanService : IPlanService
     {
         public PlanDto GeneratePlan(UserDto loggedInUser,
-            long startAtTicks,
-            long endAtTicks,
+            long startAtMillis,
+            long endAtMillis,
             List<Guid> activities)
         {
-            DateTime startedDateTime = new DateTime(startAtTicks);
-            DateTime endDateTime = new DateTime(endAtTicks);
+            DateTime baseDate = DateTime.Today;
+
+            DateTime startedDateTime = baseDate.AddMilliseconds(startAtMillis);
+            DateTime endDateTime = baseDate.AddMilliseconds(endAtMillis);
+
+            if(endAtMillis < startAtMillis)
+            {
+                endDateTime.AddDays(1);
+            }
+
 
             using (HomePlanEntities entities = new HomePlanEntities())
             {
