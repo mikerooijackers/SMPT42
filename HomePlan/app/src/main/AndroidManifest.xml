@@ -67,6 +67,10 @@
             android:name=".SelectUserActivitiesActivity"
             android:label="@string/title_activity_select_user_activities" >
         </activity>
+        <activity
+            android:name=".AdjustDayLengthActivity"
+            android:label="@string/adjust_day_length">
+        </activity>
     </application>
 
 </manifest>
