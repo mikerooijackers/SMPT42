@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.util.Base64;
+import android.widget.TimePicker;
 
 import com.example.teamhomeplan.homeplan.R;
 import com.example.teamhomeplan.homeplan.domain.User;
@@ -126,5 +127,10 @@ public class Utilities {
                                                UserActivityIconType iconType) {
         //TODO: implement
         return context.getResources().getDrawable(R.drawable.logo);
+    }
+
+    public static double getTimePickerInMilliseconds(TimePicker tp)
+    {
+        return (tp.getCurrentHour() * 3600000) + (tp.getCurrentMinute() * 60000);
     }
 }

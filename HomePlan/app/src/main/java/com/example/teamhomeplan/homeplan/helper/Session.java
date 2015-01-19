@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import com.example.teamhomeplan.homeplan.LoginActivity;
 import com.example.teamhomeplan.homeplan.MainActivity;
+import com.example.teamhomeplan.homeplan.domain.Plan;
 import com.example.teamhomeplan.homeplan.domain.User;
 import com.example.teamhomeplan.homeplan.domain.UserActivity;
 
@@ -23,6 +24,8 @@ public class Session {
 
     //List of all the user activities that are loaded.
     public static List<UserActivity> loadedUserActivities;
+
+    public static Plan currentLoadedPlan;
 
     public static UserActivity getUserActivity(String userActivityID)
     {
