@@ -13,7 +13,7 @@
     <string name="activity_name_text">Naam activiteit</string>
     <string name="activity_duration_text">Duur activiteit</string>
     <string name="save_button_text">Opslaan</string>
-    <string name="add_user_activity">Bekijk activiteiten</string>
+    <string name="add_user_activity">Beheer activiteiten</string>
     <string name="email">Email</string>
     <string name="login">Log in</string>
     <string name="register">Registreer</string>

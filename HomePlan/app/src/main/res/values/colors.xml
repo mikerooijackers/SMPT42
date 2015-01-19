@@ -5,4 +5,6 @@
     <color name="buttonbackground">#e65e52</color>
     <color name="borders">#f0f4f5</color>
     <color name="subtleText">#ffafafaf</color>
+    <color name="pressedColor">#6be65e52</color>
+    <color name="black">#000</color>
 </resources>

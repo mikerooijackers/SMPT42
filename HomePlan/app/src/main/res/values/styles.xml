@@ -19,6 +19,7 @@
     </style>
 
     <style name="listViewStyle" parent="android:style/Widget.ListView">
+        <item name="android:background">@drawable/lv_bg</item>
         <item name="android:textColor">@color/text</item>
     </style>
 
