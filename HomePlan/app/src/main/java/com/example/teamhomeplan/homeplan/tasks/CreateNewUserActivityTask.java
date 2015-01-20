@@ -32,10 +32,10 @@ public class CreateNewUserActivityTask extends AsyncTask<Void, Void, UserActivit
     private UserActivity userActivity;
 
     public CreateNewUserActivityTask(CreateTaskCallback callback, UserActivity activity) {
-        if (createTaskCallback == null)
-            throw new IllegalArgumentException("callback");
-        if (userActivity == null)
-            throw new IllegalArgumentException("userActivity");
+        //if (createTaskCallback == null)
+        //    throw new IllegalArgumentException("callback");
+        //if (userActivity == null)
+         //   throw new IllegalArgumentException("userActivity");
 
         this.serviceException = null;
         this.createTaskCallback = callback;
