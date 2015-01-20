@@ -16,6 +16,7 @@ import com.example.teamhomeplan.homeplan.callback.ModifiedUserActivityCallback;
 import com.example.teamhomeplan.homeplan.domain.UserActivity;
 import com.example.teamhomeplan.homeplan.enumerations.UserActivityIconType;
 import com.example.teamhomeplan.homeplan.exception.ServiceException;
+import com.example.teamhomeplan.homeplan.helper.Session;
 import com.example.teamhomeplan.homeplan.helper.Utilities;
 import com.example.teamhomeplan.homeplan.tasks.ModifyUserActivityTask;
 
@@ -45,6 +46,11 @@ public class MutateUserActivityActivity extends ActionBarActivity implements Mod
 
         Intent intent = getIntent();
         String editingUserActivityIDString= intent.getStringExtra("editid");
+
+        TimePicker timePicker = (TimePicker) findViewById(R.id.useractivitymutate_timepicker);
+        timePicker.setIs24HourView(true);
+        timePicker.setCurrentHour(0);
+        timePicker.setCurrentMinute(15);
 
         if(editingUserActivityIDString != null && !editingUserActivityIDString.equals("")){
             editingUserActivityID = UUID.fromString(editingUserActivityIDString);
@@ -86,7 +92,7 @@ public class MutateUserActivityActivity extends ActionBarActivity implements Mod
 
             UserActivity userActivityToMutate = new UserActivity();
             userActivityToMutate.setIconType(iconType);
-            userActivityToMutate.setUserId(editingUserActivityID.toString());
+            userActivityToMutate.setUserId(Session.authenticatedUser.getUserId());
             userActivityToMutate.setName(activityName);
             userActivityToMutate.setPlannedDuration(timeMilliseconds);
 
