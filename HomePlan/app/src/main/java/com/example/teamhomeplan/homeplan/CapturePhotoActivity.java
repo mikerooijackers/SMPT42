@@ -14,6 +14,7 @@ import com.example.teamhomeplan.homeplan.exception.ServiceException;
 import com.example.teamhomeplan.homeplan.helper.Utilities;
 import com.example.teamhomeplan.homeplan.tasks.CapturePhotoTask;
 
+
 /**
  * Created by Edwin on 19-Jan-15.
  */
