@@ -48,7 +48,11 @@ namespace HomePlan.Services
                 TimeSpan totalTimeSpan = endDateTime.Subtract(startedDateTime);
                 TimeSpan totalWorkingTime = totalTimeSpan.Subtract(totalBreakTime);
 
-                long workDurationTicks = totalWorkingTime.Ticks/userActivities.Count();
+                double workDurationMillis = totalWorkingTime.TotalMilliseconds;
+                if(userActivities.Count() > 0)
+                {
+                    workDurationMillis = totalWorkingTime.TotalMilliseconds / (userActivities.Count() + 1);
+                }
 
                 Plan plan = new Plan()
                 {
@@ -59,14 +63,15 @@ namespace HomePlan.Services
                 };
 
 
-                TimeSpan currentTime = new TimeSpan(startedDateTime.Ticks);
+                TimeSpan currentTime = TimeSpan.FromMilliseconds(startedDateTime.TimeOfDay.TotalMilliseconds);
 
                 int order = 1;
 
                 for (int i = 0; i < userActivities.Count(); i++)
                 {
                     //Add the work activity
-                    TimeSpan endTime = currentTime.Add(new TimeSpan(workDurationTicks));
+                    TimeSpan endTime = currentTime.Add(TimeSpan.FromMilliseconds(workDurationMillis));
+
                     plan.PlanActivities.Add(new PlanActivity()
                     {
                         PlanActivityID = Guid.NewGuid(),
@@ -78,28 +83,34 @@ namespace HomePlan.Services
                     });
 
                     currentTime = endTime;
+
                     //Add the personal activity.
                     UserActivity userActivity = userActivities.ElementAt(i);
+
+                    TimeSpan breakEndTime = currentTime.Add(userActivity.PlannedDuration);
                     plan.PlanActivities.Add(new PlanActivity()
                     {
-                        PlanActivityID = new Guid(),
+                        PlanActivityID = Guid.NewGuid(),
                         IsActual = false,
                         Order = order++,
                         StartTime = currentTime,
                         UserActivityID = userActivity.UserActivityID,
-                        EndTime = currentTime.Add(userActivity.PlannedDuration),
+                        EndTime = breakEndTime,
                         Type = PlanActivityType.Personal
                     });
+
+                    currentTime = breakEndTime;
+
                 }
 
-                //Add the last work activity.
+                //Add the last work activity.s
                 plan.PlanActivities.Add(new PlanActivity()
                 {
                     PlanActivityID = Guid.NewGuid(),
                     IsActual = false,
                     Order = order,
                     StartTime = currentTime,
-                    EndTime = currentTime.Add(new TimeSpan(workDurationTicks)),
+                    EndTime = currentTime.Add(TimeSpan.FromMilliseconds(workDurationMillis)),
                     Type = PlanActivityType.WorkRelated
                 });
 

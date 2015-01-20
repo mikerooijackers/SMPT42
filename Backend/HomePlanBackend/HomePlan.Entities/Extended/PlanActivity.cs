@@ -15,9 +15,9 @@ namespace HomePlan.Entities
         {
             return new PlanActivityDto()
             {
-                EndTimeMillis = this.EndTime.TotalMilliseconds,
-                StartTimeMillis = this.StartTime.TotalMilliseconds,
-                PlanActivityId = this.PlanActivityID,
+                EndTimeMillis = (long) this.EndTime.TotalMilliseconds,
+                StartTimeMillis = (long) this.StartTime.TotalMilliseconds,
+                PlanActivityId =  this.PlanActivityID,
                 Type = this.Type
             };
         }

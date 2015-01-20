@@ -12,6 +12,6 @@ namespace HomePlan.Services
     public interface IPlanService
     {
         [OperationContract]
-        PlanDto GeneratePlan(UserDto loggedInUser, long startAtTicks, long endAtTicks, List<Guid> activities);
+        PlanDto GeneratePlan(UserDto loggedInUser, long startAtMillis, long endAtMillis, List<Guid> activities);
     }
 }
