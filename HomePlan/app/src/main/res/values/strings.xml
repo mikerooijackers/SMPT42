@@ -28,5 +28,6 @@
     <string name="title_activity_planning_generator">PlanningGeneratorActivity</string>
     <string name="title_activity_select_user_activities">SelectUserActivitiesActivity</string>
     <string name="adjust_day_length">Pas lengte van dag aan</string>
+    <string name="title_activity_day_overview">DayOverviewActivity</string>
 
 </resources>

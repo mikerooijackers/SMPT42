@@ -139,8 +139,10 @@ public class PlanningGeneratorActivity extends ActionBarActivity implements Plan
 
     @Override
     public void afterSuccessfulGeneration(Plan plan) {
-        //TODO: show new screen with plan.
         Session.currentLoadedPlan = plan;
+
+        Intent intent = new Intent(PlanningGeneratorActivity.this, DayOverviewActivity.class);
+        startActivity(intent);
     }
 
     @Override
