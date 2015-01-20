@@ -1,12 +1,68 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.example.teamhomeplan.homeplan.DayOverviewActivity">
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    style="@style/blackActivity"
+    android:paddingTop="@dimen/activity_vertical_margin">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/day_overview_chart"
+            android:layout_width="fill_parent"
+            android:layout_height="350dp" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:weightSum="4"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/day_overview_incidental"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                style="@style/buttonStyle"
+                android:text="incidental break"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/day_overview_takebreak"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Take planned break"
+                style="@style/buttonStyle"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/day_overview_skip"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                style="@style/buttonStyle"
+                android:text="Skip planned break"
+                android:layout_weight="1"/>
+
+
+            <Button
+                android:id="@+id/day_overview_share_photo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                style="@style/buttonStyle"
+                android:text="Share a picture"
+                android:layout_weight="1"/>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
 
 </RelativeLayout>
