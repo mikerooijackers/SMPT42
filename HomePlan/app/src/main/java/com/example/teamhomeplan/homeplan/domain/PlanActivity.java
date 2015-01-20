@@ -22,4 +22,7 @@ public class PlanActivity {
     @SerializedName("EndTimeMillis")
     private long endTimeMillis;
 
+    @SerializedName("UserActivity")
+    private UserActivity userActivity;
+
 }

@@ -15,5 +15,6 @@ namespace HomePlan.Shared.DTO
         public PlanActivityType Type { get; set; } 
         public long StartTimeMillis { get; set; }
         public long EndTimeMillis { get; set; }
+        public UserActivityDto UserActivity { get; set; }
     }
 }
