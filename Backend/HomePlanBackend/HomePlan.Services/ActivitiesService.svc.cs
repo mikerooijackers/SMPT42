@@ -152,5 +152,41 @@ namespace HomePlan.Services
                 return true;
             }
         }
+
+        public bool SavePhoto(User user, string photo)
+        {
+            bool success = false;
+
+            using (var entities = new HomePlanEntities())
+            {
+
+                Entities.Photo newPhoto = new Entities.Photo()
+                {
+                  UserID = Guid.NewGuid();
+                };
+
+                if (!String.IsNullOrWhiteSpace(photo))
+                {
+                    string imageLocation = ImageHelper.SavePhoto(user, photo);
+                    newPhoto.Photo = imageLocation;
+                }
+
+                entities.Photo.Add(newPhoto);
+
+                try
+                {
+                    entities.SaveChanges();
+                    success = true;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("An unknown error occurred.");
+                    return false;
+                }
+
+                return success;
+            }
+        }
+
     }
 }

@@ -41,6 +41,31 @@ namespace HomePlan.Services.Helpers
             }
         }
 
+        public static string SavePhoto(Entities.User userSaving, string encodedImage)
+        {
+            var imgDirectory = Path.Combine(Properties.Settings.Default.ImageFiles, userSaving.UserID.ToString());
+
+            if (!Directory.Exists(imgDirectory))
+            {
+                Directory.CreateDirectory(imgDirectory);
+            }
+
+            byte[] bytes = Convert.FromBase64String(encodedImage);
+
+            using (var ms = new MemoryStream(bytes))
+            {
+                using (Image img = Image.FromStream(ms))
+                {
+                    Guid imgGuid = Guid.NewGuid();
+                    var strFileName = Path.Combine(userSaving.UserID.ToString(), imgGuid.ToString() + ".jpg");
+                    var strFullFile = Path.Combine(Properties.Settings.Default.ImageFiles, strFileName);
+                    img.Save(strFullFile);
+
+                    return strFileName;
+                }
+            }
+        }
+
         public static bool RemoveImage(string imageLocation)
         {
             throw new NotImplementedException();
