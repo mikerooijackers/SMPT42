@@ -30,14 +30,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 style="@style/buttonStyle"
-                android:text="incidental break"
+                android:text="@string/incidental_break"
                 android:layout_weight="1"/>
 
             <Button
                 android:id="@+id/day_overview_takebreak"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Take planned break"
+                android:text="@string/take_planned_break"
                 style="@style/buttonStyle"
                 android:layout_weight="1"/>
 
@@ -46,7 +46,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 style="@style/buttonStyle"
-                android:text="Skip planned break"
+                android:text="@string/skip_planned_break"
                 android:layout_weight="1"/>
 
 
@@ -55,7 +55,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 style="@style/buttonStyle"
-                android:text="Share a picture"
+                android:text="@string/share_a_picture"
                 android:layout_weight="1"/>
 
 

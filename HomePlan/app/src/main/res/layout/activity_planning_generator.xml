@@ -31,7 +31,7 @@
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Begintijd" />
+                    android:text="@string/begintijd" />
 
                 <TimePicker
                     android:id="@+id/planning_generator_starttime"
@@ -52,7 +52,7 @@
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Eindtijd" />
+                    android:text="@string/eindtijd" />
 
 
                 <TimePicker
@@ -77,7 +77,7 @@
                 android:id="@+id/textView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Activiteiten voor werkdag"
+                android:text="@string/activiteiten_voor_werkdag"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <LinearLayout
@@ -102,7 +102,7 @@
                 android:id="@+id/planning_generator_manage_activities"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Beheer activiteiten" />
+                android:text="@string/beheer_activiteiten" />
         </LinearLayout>
 
 
@@ -111,7 +111,7 @@
             style="@style/buttonStyle"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Begin werkdag" />
+            android:text="@string/begin_werkdag" />
     </LinearLayout>
 
 </RelativeLayout>

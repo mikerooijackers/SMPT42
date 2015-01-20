@@ -29,5 +29,14 @@
     <string name="title_activity_select_user_activities">SelectUserActivitiesActivity</string>
     <string name="adjust_day_length">Pas lengte van dag aan</string>
     <string name="title_activity_day_overview">DayOverviewActivity</string>
+    <string name="incidental_break">Incidentele break</string>
+    <string name="take_planned_break">Neem pauze</string>
+    <string name="skip_planned_break">Skip geplande pauze</string>
+    <string name="share_a_picture">Deel een afbeelding</string>
+    <string name="begintijd">Begintijd</string>
+    <string name="eindtijd">Eindtijd</string>
+    <string name="activiteiten_voor_werkdag">Activiteiten voor werkdag</string>
+    <string name="beheer_activiteiten">Beheer activiteiten</string>
+    <string name="begin_werkdag">Begin werkdag</string>
 
 </resources>
