@@ -67,6 +67,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HomePlanModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Photo.cs">
+      <DependentUpon>HomePlanModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Plan.cs">
       <DependentUpon>HomePlanModel.tt</DependentUpon>
     </Compile>

@@ -5,15 +5,17 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="de9d47c212294b59a125bdca27f149a9" Name="Diagram1">
-        <EntityTypeShape EntityType="HomePlanModel.Plan" Width="1.5" PointX="3" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="HomePlanModel.PlanActivity" Width="1.5" PointX="5.25" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="HomePlanModel.User" Width="1.5" PointX="0.75" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="HomePlanModel.UserActivity" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
-        <AssociationConnector Association="HomePlanModel.FK_Plan_User" ManuallyRouted="false" />
-        <AssociationConnector Association="HomePlanModel.FK_PlanActivity_Plan" ManuallyRouted="false" />
-        <AssociationConnector Association="HomePlanModel.FK_PlanActivity_UserActivity" ManuallyRouted="false" />
-        <AssociationConnector Association="HomePlanModel.FK_PlannedActivity_PlanActivity" ManuallyRouted="false" />
-        <AssociationConnector Association="HomePlanModel.FK_UserActivity_Person" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="HomePlanModel.Photo" Width="1.5" PointX="9.625" PointY="2" />
+        <EntityTypeShape EntityType="HomePlanModel.Plan" Width="1.5" PointX="9.625" PointY="4.5" />
+        <EntityTypeShape EntityType="HomePlanModel.PlanActivity" Width="1.5" PointX="11.875" PointY="5.5" />
+        <EntityTypeShape EntityType="HomePlanModel.User" Width="1.5" PointX="7.375" PointY="4.75" />
+        <EntityTypeShape EntityType="HomePlanModel.UserActivity" Width="1.5" PointX="9.625" PointY="7.375" />
+        <AssociationConnector Association="HomePlanModel.FK_Photo_User" />
+        <AssociationConnector Association="HomePlanModel.FK_Plan_User1" />
+        <AssociationConnector Association="HomePlanModel.FK_PlanActivity_Plan1" />
+        <AssociationConnector Association="HomePlanModel.FK_PlanActivity_UserActivity1" />
+        <AssociationConnector Association="HomePlanModel.FK_PlannedActivity_PlanActivity1" />
+        <AssociationConnector Association="HomePlanModel.FK_UserActivity_Person1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

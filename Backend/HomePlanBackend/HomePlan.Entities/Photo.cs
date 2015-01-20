@@ -15,30 +15,18 @@ namespace HomePlan.Entities
 using System;
     using System.Collections.Generic;
     
-public partial class Plan
+public partial class Photo
 {
 
-    public Plan()
-    {
+    public System.Guid PhotoId { get; set; }
 
-        this.PlanActivities = new HashSet<PlanActivity>();
+    public System.Guid UserId { get; set; }
 
-    }
-
-
-    public System.Guid PlanID { get; set; }
-
-    public System.Guid UserID { get; set; }
-
-    public System.DateTime StartDateTime { get; set; }
-
-    public System.DateTime EndDateTime { get; set; }
+    public string Photolocation { get; set; }
 
 
 
     public virtual User User { get; set; }
-
-    public virtual ICollection<PlanActivity> PlanActivities { get; set; }
 
 }
 

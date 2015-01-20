@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Edwin\Documents\GitHub\SMPT42\SMPT42\Backend\HomePlanBackend\HomePlan.Entities\HomePlanModel.edmx'. 
+﻿// T4 code generation is enabled for model '\\psf\Home\SMPT42\Backend\HomePlanBackend\HomePlan.Entities\HomePlanModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
