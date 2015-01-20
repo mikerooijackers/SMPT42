@@ -17,9 +17,9 @@ public class PlanActivity {
     private PlanActivityType type;
 
     @SerializedName("StartTimeMillis")
-    private double startTimeMillis;
+    private long startTimeMillis;
 
     @SerializedName("EndTimeMillis")
-    private double endTimeMillis;
+    private long endTimeMillis;
 
 }

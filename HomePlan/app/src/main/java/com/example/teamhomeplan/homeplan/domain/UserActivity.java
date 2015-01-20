@@ -18,10 +18,10 @@ import com.google.gson.annotations.SerializedName;
  */
 public class UserActivity implements Parcelable {
 
-    @SerializedName("UserActivityID")
+    @SerializedName("UserActivityId")
     private String userActivityId;
 
-    @SerializedName("UserID")
+    @SerializedName("UserId")
     private String userId;
 
     @SerializedName("Name")

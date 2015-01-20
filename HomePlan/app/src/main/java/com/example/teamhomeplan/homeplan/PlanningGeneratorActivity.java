@@ -43,6 +43,18 @@ public class PlanningGeneratorActivity extends ActionBarActivity implements Plan
 
         Button generatePlanButton = (Button) findViewById(R.id.planning_generator_generate);
         generatePlanButton.setOnClickListener(onGeneratePlanClicked);
+
+
+        TimePicker startTimePicker = (TimePicker) findViewById(R.id.planning_generator_starttime);
+        TimePicker endTimePicker = (TimePicker) findViewById(R.id.planning_generator_endtime);
+
+        startTimePicker.setIs24HourView(true);
+        startTimePicker.setCurrentHour(8);
+        startTimePicker.setCurrentMinute(0);
+
+        endTimePicker.setIs24HourView(true);
+        endTimePicker.setCurrentHour(17);
+        endTimePicker.setCurrentMinute(0);
     }
 
 
@@ -93,8 +105,8 @@ public class PlanningGeneratorActivity extends ActionBarActivity implements Plan
             TimePicker startTimePicker = (TimePicker) findViewById(R.id.planning_generator_starttime);
             TimePicker endTimePicker = (TimePicker) findViewById(R.id.planning_generator_endtime);
 
-            double startMillis = Utilities.getTimePickerInMilliseconds(startTimePicker);
-            double endMillis = Utilities.getTimePickerInMilliseconds(endTimePicker);
+            long startMillis = Utilities.getTimePickerInMilliseconds(startTimePicker);
+            long endMillis = Utilities.getTimePickerInMilliseconds(endTimePicker);
             List<UserActivity> userActivities = activityListAdapter.getUserActivities();
 
 

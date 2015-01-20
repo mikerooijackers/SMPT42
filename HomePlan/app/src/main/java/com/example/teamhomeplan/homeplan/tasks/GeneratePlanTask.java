@@ -33,14 +33,14 @@ public class GeneratePlanTask extends AsyncTask<Void, Void, Plan> {
 
     private PlanGenerationCallback callback;
     private ServiceException serviceException;
-    private double startAtMillis;
-    private double endAtMillis;
+    private long startAtMillis;
+    private long endAtMillis;
     private List<String> userActivityIds; //JSON in backend will serialize them back to GUID
 
 
     public GeneratePlanTask(PlanGenerationCallback callback,
-                            double startAtMillis,
-                            double endAtMillis,
+                            long startAtMillis,
+                            long endAtMillis,
                             List<UserActivity> userActivities) {
         if (callback == null) {
             throw new IllegalArgumentException("callback was null");
@@ -90,7 +90,7 @@ public class GeneratePlanTask extends AsyncTask<Void, Void, Plan> {
                 generatedPlan = gson.fromJson(respJson, Plan.class);
             } else {
                 if (respJson.equals("")) {
-                    throw new Exception("An unexpected error occurred");
+                    throw new Exception("An unexpected error occurred: Http status: " + statusLine.getStatusCode());
                 } else {
                     this.serviceException = gson.fromJson(respJson, JsonException.class);
                 }

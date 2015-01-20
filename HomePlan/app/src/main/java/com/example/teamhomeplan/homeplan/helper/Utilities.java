@@ -129,7 +129,7 @@ public class Utilities {
         return context.getResources().getDrawable(R.drawable.logo);
     }
 
-    public static double getTimePickerInMilliseconds(TimePicker tp)
+    public static long getTimePickerInMilliseconds(TimePicker tp)
     {
         return (tp.getCurrentHour() * 3600000) + (tp.getCurrentMinute() * 60000);
     }
