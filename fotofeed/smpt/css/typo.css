@@ -1,0 +1,29 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,800,600);
+body {
+	font-family: 'Open Sans';
+}
+h1 {
+	font-family: 'Open Sans';
+	font-weight: 600;
+	color: #12aebb;
+	text-transform: uppercase;
+	font-size: 6vh;
+}
+
+h2 {
+	font-size: 1em;
+	color: #775e47;
+	font-weight: 600;
+	padding-top: 5px;
+	text-align: right;
+}
+
+span {
+	font-size: 0.875em;
+	color: #12aebb;
+	text-align: right;
+}
+
+.comment {
+	margin-top: 10px;
+}

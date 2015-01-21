@@ -1,0 +1,46 @@
+body {
+	background-color: #474c4c;
+}
+
+nav {
+	height: 7vh;
+	background-color: white;
+	text-align: center;
+	padding-top: 1vh;
+}
+
+.container {
+	width: 100%;
+	height: auto;
+	padding: 20px;
+}
+
+.vertical {
+	width: 218px;
+	height: 380px;
+	background-color: white;
+	padding: 10px;
+	float: left;
+	margin-right: 20px;
+}
+
+.profile {
+	height: 50px;
+	margin-bottom: 10px;
+}
+
+.profile_pic {
+	float: left;
+
+}
+.profile_data {
+	float: right;
+}
+
+.horizontal {
+	width: 380px;
+	height: 350px;
+	float: left;
+	background-color: white;
+	padding: 10px;
+}
