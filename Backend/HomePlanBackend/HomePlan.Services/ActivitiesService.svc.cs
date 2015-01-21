@@ -8,7 +8,6 @@ using System.Text;
 using HomePlan.Entities;
 using HomePlan.Services.Helpers;
 using HomePlan.Shared.DTO;
-using HomePlan.Entities;
 
 namespace HomePlan.Services
 {
@@ -183,7 +182,6 @@ namespace HomePlan.Services
                 catch (Exception ex)
                 {
                     throw new Exception("An unknown error occurred.");
-                    return false;
                 }
 
                 return success;
