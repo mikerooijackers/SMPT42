@@ -39,6 +39,15 @@ public class UserActivitiesOverviewActivity extends Activity implements UserActi
 
         Button addActivityButton = (Button) findViewById(R.id.useractivitesoverview_useractivities_add);
         addActivityButton.setOnClickListener(onAddActivityClickListener);
+
+        Button takePicture = (Button) findViewById(R.id.useractivitiesoverview_makepicture);
+        takePicture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserActivitiesOverviewActivity.this, CapturePhotoActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
