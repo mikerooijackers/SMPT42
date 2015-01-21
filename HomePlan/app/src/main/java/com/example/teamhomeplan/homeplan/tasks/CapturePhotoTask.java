@@ -1,6 +1,8 @@
 package com.example.teamhomeplan.homeplan.tasks;
 
 import android.os.AsyncTask;
+import android.util.Log;
+
 import com.example.teamhomeplan.homeplan.callback.CapturePhotoCallback;
 import com.example.teamhomeplan.homeplan.exception.AsyncTaskException;
 import com.example.teamhomeplan.homeplan.exception.JsonException;
@@ -35,7 +37,7 @@ public class CapturePhotoTask extends AsyncTask<Void, Void, String> {
 
     @Override
     protected String doInBackground(Void... params) {
-        String url = Constants.webservicebase + "AuthenticationService.svc/SavePhoto";
+        String url = Constants.webservicebase + "ActivitiesService.svc/SavePhoto";
 
         String image = "";
 
@@ -70,5 +72,18 @@ public class CapturePhotoTask extends AsyncTask<Void, Void, String> {
         }
 
         return image;
+    }
+
+    @Override
+    protected void onPostExecute(String s) {
+        super.onPostExecute(s);
+
+        if(s != null && !s.equals(""))
+        {
+            this.callback.afterPhotoCapturedSuccess();
+        } else {
+            Log.e("TaskException", this.serviceException.toString());
+            this.callback.afterPhotoCapturedFailed(this.serviceException);
+        }
     }
 }

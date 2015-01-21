@@ -1,11 +1,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/blackActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    style="@style/blackActivity"
     android:paddingTop="@dimen/activity_vertical_margin">
 
 
@@ -21,46 +21,51 @@
 
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:weightSum="4"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
 
             <Button
                 android:id="@+id/day_overview_incidental"
+                style="@style/buttonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                style="@style/buttonStyle"
-                android:text="@string/incidental_break"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:text="@string/incidental_break" />
 
             <Button
                 android:id="@+id/day_overview_takebreak"
+                style="@style/buttonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/take_planned_break"
-                style="@style/buttonStyle"
-                android:layout_weight="1"/>
-
-            <Button
-                android:id="@+id/day_overview_skip"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                style="@style/buttonStyle"
-                android:text="@string/skip_planned_break"
-                android:layout_weight="1"/>
-
-
-            <Button
-                android:id="@+id/day_overview_share_photo"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                style="@style/buttonStyle"
-                android:text="@string/share_a_picture"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:text="@string/take_planned_break" />
 
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/day_overview_skip"
+                style="@style/buttonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/skip_planned_break" />
+
+
+            <Button
+                android:id="@+id/day_overview_share_photo"
+                style="@style/buttonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/share_a_picture" />
+        </LinearLayout>
 
     </LinearLayout>
 

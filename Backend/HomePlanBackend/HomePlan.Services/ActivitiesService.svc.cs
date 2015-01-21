@@ -153,25 +153,27 @@ namespace HomePlan.Services
             }
         }
 
-        public bool SavePhoto(User user, string photo)
+        public bool SavePhoto(UserDto user, string photo)
         {
             bool success = false;
 
             using (var entities = new HomePlanEntities())
             {
+                User entitiesUser = AuthenticationHelper.Authenticate(user);
 
                 Entities.Photo newPhoto = new Entities.Photo()
                 {
-                  UserID = Guid.NewGuid();
+                  UserId = user.UserId,
+                  PhotoId = Guid.NewGuid()
                 };
 
                 if (!String.IsNullOrWhiteSpace(photo))
                 {
-                    string imageLocation = ImageHelper.SavePhoto(user, photo);
-                    newPhoto.Photo = imageLocation;
+                    string imageLocation = ImageHelper.SavePhoto(entitiesUser, photo);
+                    newPhoto.Photolocation = imageLocation;
                 }
 
-                entities.Photo.Add(newPhoto);
+                entities.Photos.Add(newPhoto);
 
                 try
                 {
