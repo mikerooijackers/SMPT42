@@ -8,7 +8,7 @@
 
     <ListView
         android:layout_width="fill_parent"
-        android:layout_height="500dp"
+        android:layout_height="450dp"
         android:id="@+id/listview_useractivies"
         style="@style/listViewStyle"/>
 
@@ -18,5 +18,13 @@
         android:text="@string/add_new_activity_text"
         style="@style/buttonStyle"
         android:id="@+id/useractivitesoverview_useractivities_add"/>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/maakfoto"
+        android:layout_marginTop="10dp"
+        style="@style/buttonStyle"
+        android:id="@+id/useractivitiesoverview_makepicture" />
 
 </LinearLayout>
