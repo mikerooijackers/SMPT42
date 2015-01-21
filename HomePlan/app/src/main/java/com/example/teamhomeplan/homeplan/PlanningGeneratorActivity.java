@@ -107,7 +107,12 @@ public class PlanningGeneratorActivity extends ActionBarActivity implements Plan
 
             long startMillis = Utilities.getTimePickerInMilliseconds(startTimePicker);
             long endMillis = Utilities.getTimePickerInMilliseconds(endTimePicker);
-            List<UserActivity> userActivities = activityListAdapter.getUserActivities();
+
+            List<UserActivity> userActivities = new ArrayList<>();
+            if (activityListAdapter != null)
+            {
+                userActivities = activityListAdapter.getUserActivities();
+            }
 
 
             GeneratePlanTask generatePlanTask = new GeneratePlanTask(PlanningGeneratorActivity.this, startMillis, endMillis, userActivities);

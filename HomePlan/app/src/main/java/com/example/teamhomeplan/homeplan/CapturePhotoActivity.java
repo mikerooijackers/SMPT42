@@ -59,6 +59,9 @@ public class CapturePhotoActivity extends Activity implements CapturePhotoCallba
                 }
             }
         });
+
+        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(cameraIntent, CAMERA_REQUEST);
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

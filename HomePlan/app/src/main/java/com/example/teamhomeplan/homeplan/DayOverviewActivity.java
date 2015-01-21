@@ -1,7 +1,10 @@
 package com.example.teamhomeplan.homeplan;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.example.teamhomeplan.homeplan.domain.Plan;
 import com.example.teamhomeplan.homeplan.domain.PlanActivity;
@@ -50,7 +53,6 @@ public class DayOverviewActivity extends Activity implements OnChartValueSelecte
         pieChart.setUsePercentValues(true);
 
 
-        //TODO: SET DATA HERE.
         setChartData();
 
         pieChart.animateXY(1500, 1500);
@@ -61,7 +63,8 @@ public class DayOverviewActivity extends Activity implements OnChartValueSelecte
         l.setYEntrySpace(5f);
 
 
-        //TODO: draw the pie chart from here.
+        Button photoButton = (Button) findViewById(R.id.day_overview_share_photo);
+        photoButton.setOnClickListener(onSharePhotoClickListener);
     }
 
 
@@ -113,6 +116,14 @@ public class DayOverviewActivity extends Activity implements OnChartValueSelecte
 
         pieChart.invalidate();
     }
+
+    private View.OnClickListener onSharePhotoClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(DayOverviewActivity.this, CapturePhotoActivity.class);
+            startActivity(intent);
+        }
+    };
 
 
     @Override

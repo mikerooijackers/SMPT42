@@ -47,5 +47,8 @@ namespace HomePlan.Services
         /// <returns></returns>
         [OperationContract]
         bool RemoveUserActivity(UserDto user, Guid userActivityId);
+
+        [OperationContract]
+        bool SavePhoto(UserDto user, string photo);
     }
 }

@@ -77,7 +77,7 @@ public class Utilities {
     {
         if(user == null) throw new IllegalArgumentException("User was null");
 
-        if(user.getAvatarUrl().equals("") || user.getAvatarUrl() == null)
+        if(user.getAvatarUrl() == null || user.getAvatarUrl().equals(""))
         {
             return null;
         } else {
