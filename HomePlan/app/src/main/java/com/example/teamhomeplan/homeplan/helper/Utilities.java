@@ -147,7 +147,7 @@ public class Utilities {
                 break;
 
         }
-        
+
         return context.getResources().getDrawable(drawableId);
     }
 
