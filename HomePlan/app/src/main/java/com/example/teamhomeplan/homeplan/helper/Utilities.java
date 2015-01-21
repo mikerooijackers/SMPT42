@@ -126,7 +126,29 @@ public class Utilities {
     public static Drawable getUserActivityIcon(Context context,
                                                UserActivityIconType iconType) {
         //TODO: implement
-        return context.getResources().getDrawable(R.drawable.logo);
+
+        int drawableId = R.drawable.logo;
+        switch(iconType)
+        {
+            case CHILD:
+                drawableId = R.drawable.kids1;
+                break;
+            case DOG:
+                drawableId = R.drawable.dog1;
+                break;
+            case FOOD:
+                drawableId = R.drawable.lunch1;
+                break;
+            case DOCTOR:
+                //TODO:
+                break;
+            case WORKOUT:
+                //TODO:
+                break;
+
+        }
+        
+        return context.getResources().getDrawable(drawableId);
     }
 
     public static long getTimePickerInMilliseconds(TimePicker tp)
