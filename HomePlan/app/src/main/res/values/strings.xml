@@ -29,7 +29,7 @@
     <string name="title_activity_select_user_activities">SelectUserActivitiesActivity</string>
     <string name="adjust_day_length">Pas lengte van dag aan</string>
     <string name="title_activity_day_overview">DayOverviewActivity</string>
-    <string name="incidental_break">Incidentele break</string>
+    <string name="incidental_break">Incidentele pauze</string>
     <string name="take_planned_break">Neem geplande pauze</string>
     <string name="skip_planned_break">Skip geplande pauze</string>
     <string name="share_a_picture">Deel een afbeelding</string>

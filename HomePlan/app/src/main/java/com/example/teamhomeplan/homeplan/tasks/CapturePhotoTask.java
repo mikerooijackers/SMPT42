@@ -45,7 +45,7 @@ public class CapturePhotoTask extends AsyncTask<Void, Void, String> {
             HttpClient client = new DefaultHttpClient();
             Gson gson = GsonFactory.createGson();
             JsonObject jsonObject = new JsonObject();
-            jsonObject.add("userId", gson.toJsonTree(Session.authenticatedUser.getUserId()));
+            jsonObject.add("user", gson.toJsonTree(Session.authenticatedUser));
             jsonObject.add("photo", gson.toJsonTree(this.encodedImage));
 
             HttpPost post = new HttpPost(url);

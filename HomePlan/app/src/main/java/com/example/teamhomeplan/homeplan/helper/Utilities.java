@@ -52,7 +52,8 @@ public class Utilities {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         immagex.compress(Bitmap.CompressFormat.JPEG, 20, baos);
         byte[] b = baos.toByteArray();
-        String imageEncoded = Base64.encodeToString(b,Base64.DEFAULT);
+        int flags = Base64.DEFAULT;
+        String imageEncoded = Base64.encodeToString(b,flags);
 
         return imageEncoded;
     }
